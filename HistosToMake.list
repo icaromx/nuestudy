@@ -9,3 +9,5 @@ shr_distance
 trk_score
 shr_score
 slnhits
+contained_fraction
+shr_dedx_Y

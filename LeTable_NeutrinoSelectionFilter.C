@@ -19,31 +19,37 @@
 using namespace std;
 
 std::vector<string> get_labels(TFile *f);
+TString getDir( const std::string& subdir );
 
 
-void LeTable_NeutrinoSelectionFilter(){
-  string filepath = "results";
+void LeTable_NeutrinoSelectionFilter(string dirname, int kcuts){
+  TString workdir = getDir( "/Users/ivan/Work/eLEE");
+  TString histdir = getDir( Form("%s/results/%s",workdir.Data(),dirname.c_str()));
+  TString plotdir = getDir(Form("%s/PLOTS/%s",workdir.Data(),dirname.c_str()));
 
-  TFile *f_nue = new TFile(Form("%s/nue.root",filepath.c_str()));
-  TFile *f_numu = new TFile(Form("%s/numu.root",filepath.c_str()));
-  TFile *f_databnb = new TFile(Form("%s/databnb.root",filepath.c_str()));
-  TFile *f_dirt = new TFile(Form("%s/dirt.root",filepath.c_str()));
-  TFile *f_ext = new TFile(Form("%s/ext.root",filepath.c_str()));
+  string filepath = "../results/mu_v13/";
+
+  TFile *f_nue =      new TFile(Form("%s/nue.root",histdir.Data()));
+  TFile *f_numu =     new TFile(Form("%s/numu.root",histdir.Data()));
+  TFile *f_databnb =  new TFile(Form("%s/databnb.root",histdir.Data()));
+  TFile *f_dirt =     new TFile(Form("%s/dirt.root",histdir.Data()));
+  TFile *f_ext =      new TFile(Form("%s/ext.root",histdir.Data()));
 
   std::vector<string> histoLabels = get_labels(f_nue);
 
-  vector<string> channel_labels = {"1eother","1e0p0pi","1enp0pi","1muother","1mu1pi0","ncother","ncpi0","cosmic","outoffv","other","data"};
-  std::vector<unsigned> vOrder = {1,2,0,3,4,5,6,7,8,9,10};
+//  vector<string> channel_labels = {"1eother","1e0p0pi","1enp0pi","1muother","1mu1pi0","ncother","ncpi0","cosmic","outoffv","other","data"};
+  vector<string> channel_labels = {"1e0p0pi","1enp0pi","1eother","1muother","1mu1pi0","ncother","ncpi0","cosmic","outoffv","other","data"};
+  //std::vector<unsigned> vOrder = {1,2,0,3,4,5,6,7,8,9,10};
   vector<string> sample_labels = {"nue","numu","databnb","dirt","ext"};
   std::vector<string> xAxisLabels = {"Shower Energy [GeV]","Shower Energy [GeV]", "Shower Energy [GeV]", "Shower Energy [GeV]","Shower Energy [GeV]","n_showers_contained","n_tracks_contained"};
   std::vector<double> xmax = {3, 3, 3, 3, 10, 12};
-  std::vector<string> cutLabel = {"nslice$==$1","slpdg$==$12","nShrContained$>$0","nTrkContained$==$0","(ShrEnergyTot+0.02)/0.8$>$0.06","ShrEnergy/ShrEnergyTot$>$0.8"};
+  std::vector<string> cutLabel = {"No Cut","nslice$==$1","slpdg$==$12","containedFraction$>$0.9","nShrContained$>$0","nTrkContained$==$0","(ShrEnergyTot+0.02)/0.8$>$0.06","ShrEnergy/ShrEnergyTot$>$0.8"};
 
 
   std::vector<std::vector<double> > numEntries;
   double pur, eff;
-
-  for (int i = 0; i < histoLabels.size()-8; ++i){
+  cout << histoLabels.size() << endl;
+  for (int i = 0; i < kcuts; ++i){
     std::vector<double> vEntries;
     cout << histoLabels[i] << endl;
     std::vector<TH1F *> histos_nue;
@@ -52,6 +58,7 @@ void LeTable_NeutrinoSelectionFilter(){
     std::vector<TH1F *> histos_dirt;
     std::vector<TH1F *> histos_ext;
     for (int j = 0; j < channel_labels.size(); ++j){
+    //  cout << Form("%s/h_%s_%s", histoLabels[i].c_str(), channel_labels[j].c_str(), histoLabels[i].c_str()) << endl;
       TH1F *h = (TH1F*)f_nue->Get(Form("%s/h_%s_%s", histoLabels[i].c_str(), channel_labels[j].c_str(), histoLabels[i].c_str()));
       histos_nue.push_back(h);
       TH1F *h1 = (TH1F*)f_numu->Get(Form("%s/h_%s_%s",histoLabels[i].c_str(),channel_labels[j].c_str(),histoLabels[i].c_str()));
@@ -68,31 +75,34 @@ void LeTable_NeutrinoSelectionFilter(){
       histos_nue[j]->Add(histos_dirt[j]);
     }
     for (int j = 0; j < histos_nue.size()-1; ++j){
-      //cout << histos_nue[vOrder[j]]->GetTitle() << " = " << histos_nue[vOrder[j]]->Integral() << endl;
-      vEntries.push_back(histos_nue[vOrder[j]]->Integral());
+      cout << histos_nue[j]->GetTitle() << " = " << histos_nue[j]->Integral() << endl;
+      //vEntries.push_back(histos_nue[vOrder[j]]->Integral());
+      vEntries.push_back(histos_nue[j]->Integral());
     }
     double total = 0;
+
+
+    vEntries.push_back(histos_ext[10]->Integral());
     for (int i = 0; i < vEntries.size(); ++i) total += vEntries[i];
     vEntries.push_back(total);
 
-    vEntries.push_back(histos_ext[10]->Integral());
     vEntries.push_back(histos_databnb[10]->Integral());
 
     if(i == 0) {
-      eff = 100;
-      pur = 100;
+      eff = -1;
+      pur = -1;
     }else{
-      pur = vEntries[vOrder[0]]/total*100;
-      eff = vEntries[vOrder[0]]/numEntries[0][vOrder[0]]*100;
+      pur = vEntries[0]/total*100;
+      eff = vEntries[0]/numEntries[0][0]*100;
     }
     vEntries.push_back(pur);
     vEntries.push_back(eff);
     numEntries.push_back(vEntries);
   }
 
-  vector<string> tableL = {" ","1e0p0pi","1enp0pi","1eother","1muother","1mu1pi0","ncother","ncpi0","cosmic","outoffv","other","Total","dataEXT","data","Purity","Efficiency"};
+  vector<string> tableL = {" ","1e0p0pi","1enp0pi","1eother","1muother","1mu1pi0","ncother","ncpi0","cosmic","outoffv","other","EXT","MC+EXT","BNB","Purity [\\%]","Efficiency[\\%]"};
   ofstream myfile;
-  myfile.open ("info.txt");
+  myfile.open (Form("%s/LeTable.txt",plotdir.Data()));
   myfile << "\\begin{center} \n";
   myfile << "\\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}\n";
   myfile << "\\hline\n";
@@ -111,7 +121,6 @@ void LeTable_NeutrinoSelectionFilter(){
     for (int j = 0; j < numEntries[i].size(); ++j){
 
       if(j == numEntries[i].size()-1) {
-        //cout << j << endl;
         myfile << numEntries[i][j];
         myfile <<"\\\\ \n";
         myfile <<"\\hline \n";
@@ -140,4 +149,13 @@ std::vector<string> get_labels(TFile *f) {
     }
   }
   return labels;
+}
+TString getDir( const std::string& subdir ){
+	TString getdir( subdir );
+ 	if( 0 != system( Form( "test -d %s", getdir.Data()))){
+		std::cout << "histos directory does not exist, making one now.... " << std::endl;
+    int madedir = system( Form( "mkdir -m 755 -p %s", getdir.Data() ) );
+    if( 0 != madedir ) std::cout << "HistoDir, Could not make plot directory, " << getdir << std::endl;
+   }
+ return getdir;
 }

@@ -629,13 +629,13 @@ public :
    TBranch        *b_trk_energy_proton;   //!
    TBranch        *b_trk_energy_muon;   //!
 
-   NeutrinoSelectionFilter(TString filename, string sample);
+   NeutrinoSelectionFilter(TString filename, string sample, string namedir);
    virtual ~NeutrinoSelectionFilter();
    virtual Int_t    Cut(Long64_t entry);
    virtual Int_t    GetEntry(Long64_t entry);
    virtual Long64_t LoadTree(Long64_t entry);
    virtual void     Init(TTree *tree);
-   virtual void     Loop(string sample, float potweight);
+   virtual void     Loop(string sample, float potweight, string namedir);
    virtual Bool_t   Notify();
    virtual void     Show(Long64_t entry = -1);
 };
@@ -643,25 +643,30 @@ public :
 #endif
 
 #ifdef NeutrinoSelectionFilter_cxx
-NeutrinoSelectionFilter::NeutrinoSelectionFilter(TString filename, string sample) : fChain(0)
+NeutrinoSelectionFilter::NeutrinoSelectionFilter(TString filename, string sample, string namedir) : fChain(0)
 {
 // if parameter tree is not specified (or zero), connect the file
 // used to generate this class and read the Tree.
+
 //Must be in 10^19
 
-  //LeOlde Values//
+    // v12/v17 Values//
 //  float pot_bnb_data = 4.498;
 //  float pot_nuemc = 10174.3;
-//  float pot_numumc = 111.208;
-//  float pot_dirt = 9.43574;
-//  float ext_scale = .34816;
+  float pot_numumc = 111.208;
+  float pot_dirt = 9.43574;
+  float ext_scale = .34816;
 
+    // test sample values//
+//   float pot_bnb_data = 0.4623;
+//   float pot_nuemc = 2078.46;
+//   float pot_numumc = 0.891267;
+//   float pot_dirt = 25.7546;
+//   float ext_scale = 1.13882;
 
-   float pot_bnb_data = 0.4623;
-   float pot_nuemc = 2078.46;
-   float pot_numumc = 0.891267;
-   float pot_dirt = 25.7546;
-   float ext_scale = 1.13882;
+    //v12 sample//
+   float pot_bnb_data = 4.5;
+   float pot_nuemc = 4774.18;
 
    float potweight;
    cout << Form("%s:/nuselection",filename.Data()) << endl;
@@ -682,7 +687,7 @@ NeutrinoSelectionFilter::NeutrinoSelectionFilter(TString filename, string sample
    cout << Form("%s.root:nuselection",filename.Data()) << endl;
    dir->GetObject("NeutrinoSelectionFilter",tree);
    Init(tree);
-   Loop(sample, potweight);
+   Loop(sample, potweight, namedir);
 
 }
 
@@ -1151,4 +1156,5 @@ Int_t NeutrinoSelectionFilter::Cut(Long64_t entry)
 // returns -1 otherwise.
    return 1;
 }
+
 #endif // #ifdef NeutrinoSelectionFilter_cxx
