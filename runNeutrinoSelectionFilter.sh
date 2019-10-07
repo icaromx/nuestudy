@@ -16,7 +16,7 @@ iter=5
 input=$2
 if [ "$1" == 'test' ]; then
 #        iter=1
-				input="/Users/ivan/Work/eLEE/FileLists/v12.list"
+				input="/uboone/app/users/icaro/work/eLEE/FileLists/v17Samples.list"
 fi
 
 i=0

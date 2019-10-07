@@ -24,7 +24,7 @@ TString getDir( const std::string& subdir );
 
 
 void muPlotter_NeutrinoSelectionFilter(string dirname){
-  TString workdir = getDir( "/Users/ivan/Work/eLEE");
+  TString workdir = getDir( "$APP/work/eLEE");
   TString histdir = getDir( Form("%s/results/%s",workdir.Data(),dirname.c_str()));
   TString plotdir = getDir( Form("%s/PLOTS/%s/1muother",workdir.Data(),dirname.c_str()));
 

@@ -129,7 +129,7 @@ class CutHistosGen{
         for(unsigned i = 0; i < fchanLabels.size(); i++){
       		TString hTitle = Form("h_%s_C%d_%s",fchanLabels[i].c_str(),k, flabel.c_str());
       		TH1F *h_hist = new TH1F(hTitle,hTitle,fnbins,fminbin,fmaxbin);
-          h_hist->GetXaxis()->SetTitle(fXlabel.c_str());
+		h_hist->GetXaxis()->SetTitle(fXlabel.c_str());
       		vhist.push_back(h_hist);
       	}
         h_histos.push_back(vhist);

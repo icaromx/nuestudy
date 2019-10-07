@@ -24,7 +24,8 @@ TString getDir( const std::string& subdir );
 
 
 void Plotter_NeutrinoSelectionFilter(string dirname){
-  TString workdir = getDir( "/Users/ivan/Work/eLEE");
+  //TString workdir = getDir( "/Users/ivan/Work/eLEE");
+  TString workdir = getDir( "$APP/work/eLEE");
   TString histdir = getDir( Form("%s/results/%s",workdir.Data(),dirname.c_str()));
   TString plotdir = getDir(Form("%s/PLOTS/%s",workdir.Data(),dirname.c_str()));
 
@@ -65,16 +66,62 @@ void Plotter_NeutrinoSelectionFilter(string dirname){
 
   vector<string> channel_labels = {"1e0p0pi","1enp0pi","1eother","1muother","1mu1pi0","ncother","ncpi0","cosmic","outoffv","other","data"};
   //vector<string> legend_labels = {"1eother","1e0p0pi","1enp0pi","1muother","1mu1pi0","ncother","ncpi0","cosmic","outoffv","dataEXT"};
-  std::vector<unsigned> vOrder = {1,2,0,3,4,5,6,7,8,9,10};
+  //std::vector<unsigned> vOrder = {1,2,0,3,4,5,6,7,8,9,10};
   std::vector<unsigned> vOrderdavid = {3, 4, 5, 7, 8, 6, 0, 1, 2, 9, 10};
   vector<int> hist_Fill = {kGreen,kGreen+3, kGreen-3, kAzure+2, kAzure+3, kAzure+6, kAzure+7, kRed-4, kRed+3, kGray+1, kBlack};
   vector<int> hist_FillStyle = {kGreen,kGreen+3, kGreen-3, kAzure+2, kAzure+3, kAzure+6, kAzure+7, kRed-4, kRed+3, kGray+1, 3544};
-  vector<string> sample_labels = {"nue","numu","databnb","dirt","ext"};
 
-  std::vector<double> xmax = {2, 2, 2, 2, 2, 2, 2, 2, 2, 12, 3500, 10, 1, 1, 1, 3};
-  std::vector<double> ymax = {6000,1000, 400, 400, 400, 400, 400, 400, 17, 500, 140, 400, 400, 400, 400, 2000};
-  std::vector<double> logymax = {40000,40000, 40000, 40000, 40000, 40000, 40000, 40000, 500, 1000, 140, 400, 400, 400, 400, 2000};
-  std::vector<double> ymin = {0.01,0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.001, 0.0001, 0.01, 0.01, 0.01, 0.01, 0.01};
+  std::vector<double> xmax, ymax, logymax, xmin;
+  double ymin = 0.01; 
+  for(unsigned i = 0 ; i < 64; i++){
+	if(i < 8){//EDepo 8
+		xmax.push_back(2.0);
+		xmin.push_back(0.0);
+		ymax.push_back(400000);
+	}else if(i>=8 && i < 16){//LowEDepo 8
+		xmax.push_back(0.8);
+		xmin.push_back(0.0);
+		ymax.push_back(400000);
+	}else if(i >= 16 && i < 40){//shr_dedx 3x8=24
+		xmax.push_back(20);
+		xmin.push_back(0.0);
+		ymax.push_back(600);
+	}else if(i >= 40 && i < 48){//shr_start 3x8 = 24
+		xmax.push_back(1050.0);
+		xmin.push_back(0.0);
+		ymax.push_back(100);
+	}else if(i >= 48 && i < 56){//shr_start 3x8 = 24
+		xmax.push_back(120.0);
+		xmin.push_back(-120.0);
+		ymax.push_back(100);
+	}else if(i >= 56 && i < 64){//shr_start 3x8 = 24
+		xmax.push_back(250.0);
+		xmin.push_back(0.0);
+		ymax.push_back(100);
+	}else if(i >= 64 && i < 72){//shr_start 3x8 = 24
+		xmax.push_back(1050.0);
+		xmin.push_back(0.0);
+		ymax.push_back(100);
+	}else if(i >= 72 && i < 80){//shr_start 3x8 = 24
+		xmax.push_back(120.0);
+		xmin.push_back(-120.0);
+		ymax.push_back(100);
+	}else if(i >= 80 && i < 88){//shr_start 3x8 = 24
+		xmax.push_back(250.0);
+		xmin.push_back(0.0);
+		ymax.push_back(100);
+	}else{//nu_sce_x 8
+		xmax.push_back(250);
+		xmin.push_back(0.0);
+		ymax.push_back(20);
+	}
+  }
+  cout << "xmax.size() = " << xmax.size() << ", ymax.size() = " << ymax.size() <<", histoLabels.size() = " << histoLabels.size() << endl;	
+
+//  std::vector<double> xmax = {2, 2, 2, 2, 2, 2, 2, 2, 2, 12, 3500, 10, 1, 1, 1, 3};
+//  std::vector<double> ymax = {6000,1000, 400, 400, 400, 400, 400, 400, 17, 500, 140, 400, 400, 400, 400, 2000};
+ // std::vector<double> logymax = {40000,40000, 40000, 40000, 40000, 40000, 40000, 40000, 500, 1000, 140, 400, 400, 400, 400, 2000};
+//  std::vector<double> ymin = {0.01,0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.001, 0.0001, 0.01, 0.01, 0.01, 0.01, 0.01};
 
 
 
@@ -97,7 +144,6 @@ void Plotter_NeutrinoSelectionFilter(string dirname){
       TH1F *h4 = (TH1F*)f_ext->Get(Form("%s/h_%s_%s",histoLabels[i].c_str(),channel_labels[j].c_str(),histoLabels[i].c_str()));
       histos_ext.push_back(h4);
     }
-
     for (int j = 0; j < histos_nue.size()-1; ++j){
       histos_nue[j]->Add(histos_numu[j]);
       histos_nue[j]->Add(histos_dirt[j]);
@@ -107,17 +153,13 @@ void Plotter_NeutrinoSelectionFilter(string dirname){
     auto legend = new TLegend(0.898,0.6,0.6,0.926);
     auto legenddavid = new TLegend(0.898,0.6,0.6,0.926);
     for (int j = 0; j < histos_nue.size()-1; ++j){
-      histos_nue[vOrder[j]]->SetFillColor(hist_Fill[vOrder[j]]);
-      histos_nue[vOrder[j]]->SetLineColor(hist_FillStyle[vOrder[j]]);
-
-      hs->Add(histos_nue[vOrder[j]]);
+      histos_nue[j]->SetFillColor(hist_Fill[j]);
+      histos_nue[j]->SetLineColor(hist_FillStyle[j]);
+      hs->Add(histos_nue[j]);
       hsdavid->Add(histos_nue[vOrderdavid[j]]);
-      legend->AddEntry(histos_nue[vOrder[j]],Form("%s: %f",channel_labels[vOrder[j]].c_str(),histos_nue[vOrder[j]]->Integral(0,34) ),"f");
+      legend->AddEntry(histos_nue[j],Form("%s: %f",channel_labels[j].c_str(),histos_nue[j]->Integral() ),"f");
       legenddavid->AddEntry(histos_nue[vOrderdavid[j]],Form("%s: %f",channel_labels[vOrderdavid[j]].c_str(),histos_nue[vOrderdavid[j]]->Integral(0,34) ),"f");
-      cout << histos_nue[vOrder[j]]->Integral(0,34) << ", name = " << histos_nue[vOrder[j]]->GetTitle() << endl;
-      //if(channel_labels[vOrder[j]] == "1eother") cout << "1eother = " << histos_nue[vOrder[j]]->Integral() << ", name = " << histos_nue[vOrder[j]]->GetTitle() << endl;
-      //if(channel_labels[vOrder[j]] == "1enp0pi") cout << "1eNp0pi = " << histos_nue[vOrder[j]]->Integral() << ", name = " << histos_nue[vOrder[j]]->GetTitle() << endl;
-      //if(channel_labels[vOrder[j]] == "1e0p0pi") cout << "1e0p0pi = " << histos_nue[vOrder[j]]->Integral() << ", name = " << histos_nue[vOrder[j]]->GetTitle() << endl;
+      cout << histos_nue[j]->Integral() << ", name = " << histos_nue[j]->GetTitle() << endl;
     }
 
     cout << histos_ext[10]->Integral() << ", name = EXT" << histos_ext[10]->GetTitle() << endl;
@@ -129,7 +171,6 @@ void Plotter_NeutrinoSelectionFilter(string dirname){
     legend->AddEntry(histos_ext[10],"EXT","f");
     legenddavid->AddEntry(histos_ext[10],Form("EXT: %f",histos_ext[10]->Integral(0,34)),"f");
     legenddavid->AddEntry(histos_databnb[10],Form("BNB: %f",histos_databnb[10]->Integral(0,34)));
-
     //auto rp = new TRatioPlot(histos_databnb[10],hs);
     /*
     TCanvas *c = new TCanvas("c","c",1500,1000);
@@ -174,10 +215,9 @@ void Plotter_NeutrinoSelectionFilter(string dirname){
     */
 
     //hs->GetYaxis()->SetRangeUser(ymin[i],logymax[i]);
-    TCanvas *g = new TCanvas("e","e",1500,1100);
+    TCanvas *g = new TCanvas("g","g",1500,1100);
     auto rpg = new TRatioPlot(hs, histos_databnb[10]);
     //auto rp = new TRatioPlot(histos_databnb[10],hs);
-
     rpg->SetSeparationMargin(0);
     g->SetLogy();
     //rpg->GetXaxis()->SetRangeUser(0.0,xmax[i]);
@@ -185,8 +225,8 @@ void Plotter_NeutrinoSelectionFilter(string dirname){
     //rp->GetUpperRefYaxis()->SetRangeUser(ymin[i],10);
     rpg->Draw();
     //hs->GetYaxis()->SetRangeUser(ymin[i],logymax[i]);
-    hs->SetMinimum(ymin[i]);//,logymax[i]);
-    hs->SetMaximum(logymax[i]);
+    hs->SetMinimum(ymin);//,logymax[i]);
+    hs->SetMaximum(ymax[i]);
     hs->GetXaxis()->SetTitle(Form("%s",histos_databnb[10]->GetXaxis()->GetTitle()));
     rpg->GetLowYaxis()->SetNdivisions(505);
     //rp->GetUpperPad()->Range(0.0, ymin[i], 0.001,logymax[i]);
@@ -205,7 +245,6 @@ void Plotter_NeutrinoSelectionFilter(string dirname){
     g->SaveAs(Form("%s/RP_LOG_%s.png",plotdir.Data(), histoLabels[i].c_str()));
     delete g;
 
-
     TCanvas *e = new TCanvas("e","e",1500,1100);
     auto rp = new TRatioPlot(hs, histos_databnb[10]);
     //auto rp = new TRatioPlot(histos_databnb[10],hs);
@@ -219,7 +258,7 @@ void Plotter_NeutrinoSelectionFilter(string dirname){
     //hs->GetYaxis()->SetRangeUser(ymin[i],logymax[i]);
 
     //hs->SetMinimum(ymin[i]);//,logymax[i]);//
-    //hs->SetMaximum(ymax[i]);////
+   // hs->SetMaximum(ymax[i]);////
 
     //hs->GetXaxis()->SetTitle(Form("%s",xAxisLabels[i].c_str()));
     hs->GetXaxis()->SetTitle(Form("%s",histos_databnb[10]->GetXaxis()->GetTitle()));
@@ -240,6 +279,7 @@ void Plotter_NeutrinoSelectionFilter(string dirname){
     e->SaveAs(Form("%s/RP_LINE_%s.png",plotdir.Data(), histoLabels[i].c_str()));
     delete e;
 
+    continue;
     TCanvas *dav = new TCanvas("dav","dav",1500,1100);
     auto rpdav = new TRatioPlot(hsdavid, histos_databnb[10]);
     //auto rp = new TRatioPlot(histos_databnb[10],hs);
@@ -251,7 +291,7 @@ void Plotter_NeutrinoSelectionFilter(string dirname){
     //rp->GetUpperRefYaxis()->SetRangeUser(ymin[i],10);
     rpdav->Draw();
     //hs->GetYaxis()->SetRangeUser(ymin[i],logymax[i]);
-    hsdavid->SetMinimum(ymin[i]);//,logymax[i]);
+    hsdavid->SetMinimum(ymin);//,logymax[i]);
     hsdavid->SetMaximum(500);
     //hsdavid->GetXaxis()->SetTitle(Form("%s",xAxisLabels[i].c_str()));
     hsdavid->GetXaxis()->SetTitle(Form("%s",histos_databnb[10]->GetXaxis()->GetTitle()));
@@ -271,6 +311,7 @@ void Plotter_NeutrinoSelectionFilter(string dirname){
     dav->Update();
     dav->SaveAs(Form("%s/DAV_RP_LINE_%s.png",plotdir.Data(), histoLabels[i].c_str()));
     delete dav;
+    
   }
 }
 

@@ -13,12 +13,12 @@
 #include <TFile.h>
 
 // Header file for the classes stored in the TTree if any.
-#include "c++/v1/vector"
-#include "c++/v1/vector"
-#include "c++/v1/vector"
+//#include "c++/v1/vector"
+//#include "c++/v1/vector"
+//#include "c++/v1/vector"
 #include "vector"
-#include "c++/v1/string"
-#include "vector"
+//#include "c++/v1/string"
+//#include "vector"
 
 class NeutrinoSelectionFilter {
 public :
@@ -650,9 +650,9 @@ NeutrinoSelectionFilter::NeutrinoSelectionFilter(TString filename, string sample
 
 //Must be in 10^19
 
-    // v12/v17 Values//
-//  float pot_bnb_data = 4.498;
-//  float pot_nuemc = 10174.3;
+    // v17 Values//
+  float pot_bnb_data = 4.498;
+  //float pot_nuemc = 10174.3;
   float pot_numumc = 111.208;
   float pot_dirt = 9.43574;
   float ext_scale = .34816;
@@ -665,8 +665,16 @@ NeutrinoSelectionFilter::NeutrinoSelectionFilter(TString filename, string sample
 //   float ext_scale = 1.13882;
 
     //v12 sample//
-   float pot_bnb_data = 4.5;
+   //float pot_bnb_data = 4.5;
    float pot_nuemc = 4774.18;
+
+    // v15 Sample//
+//   float pot_bnb_data = ;
+//   float pot_nuemc = 119.01;
+//   float pot_numumc = 9979.43;
+//   float pot_dirt = 25.891;
+//   float ext_scale = .28701;
+
 
    float potweight;
    cout << Form("%s:/nuselection",filename.Data()) << endl;
@@ -684,7 +692,7 @@ NeutrinoSelectionFilter::NeutrinoSelectionFilter(TString filename, string sample
    if (sample == "ext")       potweight=ext_scale;
 
    cout << "dir = " << dir << endl;
-   cout << Form("%s.root:nuselection",filename.Data()) << endl;
+   cout << Form("%s.root:nuselection",filename.Data()) << Form(" potweight = %f",potweight) << endl;
    dir->GetObject("NeutrinoSelectionFilter",tree);
    Init(tree);
    Loop(sample, potweight, namedir);

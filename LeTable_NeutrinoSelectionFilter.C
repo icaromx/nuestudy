@@ -22,12 +22,13 @@ std::vector<string> get_labels(TFile *f);
 TString getDir( const std::string& subdir );
 
 
-void LeTable_NeutrinoSelectionFilter(string dirname, int kcuts){
-  TString workdir = getDir( "/Users/ivan/Work/eLEE");
+void LeTable_NeutrinoSelectionFilter(string dirname, int kcuts, string histonames){
+
+  TString workdir = getDir( "$APP/work/eLEE" );
+
+  //TString workdir = getDir( "/Users/ivan/Work/eLEE");
   TString histdir = getDir( Form("%s/results/%s",workdir.Data(),dirname.c_str()));
   TString plotdir = getDir(Form("%s/PLOTS/%s",workdir.Data(),dirname.c_str()));
-
-  string filepath = "../results/mu_v13/";
 
   TFile *f_nue =      new TFile(Form("%s/nue.root",histdir.Data()));
   TFile *f_numu =     new TFile(Form("%s/numu.root",histdir.Data()));
@@ -51,7 +52,7 @@ void LeTable_NeutrinoSelectionFilter(string dirname, int kcuts){
   cout << histoLabels.size() << endl;
   for (int i = 0; i < kcuts; ++i){
     std::vector<double> vEntries;
-    cout << histoLabels[i] << endl;
+    //cout << histoLabels[i] << endl;
     std::vector<TH1F *> histos_nue;
     std::vector<TH1F *> histos_numu;
     std::vector<TH1F *> histos_databnb;
@@ -59,6 +60,7 @@ void LeTable_NeutrinoSelectionFilter(string dirname, int kcuts){
     std::vector<TH1F *> histos_ext;
     for (int j = 0; j < channel_labels.size(); ++j){
     //  cout << Form("%s/h_%s_%s", histoLabels[i].c_str(), channel_labels[j].c_str(), histoLabels[i].c_str()) << endl;
+    /*
       TH1F *h = (TH1F*)f_nue->Get(Form("%s/h_%s_%s", histoLabels[i].c_str(), channel_labels[j].c_str(), histoLabels[i].c_str()));
       histos_nue.push_back(h);
       TH1F *h1 = (TH1F*)f_numu->Get(Form("%s/h_%s_%s",histoLabels[i].c_str(),channel_labels[j].c_str(),histoLabels[i].c_str()));
@@ -69,6 +71,19 @@ void LeTable_NeutrinoSelectionFilter(string dirname, int kcuts){
       histos_dirt.push_back(h3);
       TH1F *h4 = (TH1F*)f_ext->Get(Form("%s/h_%s_%s",histoLabels[i].c_str(),channel_labels[j].c_str(),histoLabels[i].c_str()));
       histos_ext.push_back(h4);
+    */
+	TH1F *h = (TH1F*)f_nue->Get(Form("C%d_P_%s/h_%s_C%d_P_%s", i, histonames.c_str(), channel_labels[j].c_str(), i, histonames.c_str()));
+	cout << Form("C%d_P_%s/h_%s_C%d_P_%s", i, histonames.c_str(), channel_labels[j].c_str(), i, histonames.c_str()) << endl;
+	cout << h->Integral() << endl;
+	histos_nue.push_back(h);
+	TH1F *h1 = (TH1F*)f_numu->Get(Form("C%d_P_%s/h_%s_C%d_P_%s", i, histonames.c_str(), channel_labels[j].c_str(), i, histonames.c_str()));
+	histos_numu.push_back(h1);	
+	TH1F *h2 = (TH1F*)f_databnb->Get(Form("C%d_P_%s/h_%s_C%d_P_%s", i, histonames.c_str(), channel_labels[j].c_str(), i, histonames.c_str()));
+	histos_databnb.push_back(h2);
+	TH1F *h3 = (TH1F*)f_dirt->Get(Form("C%d_P_%s/h_%s_C%d_P_%s", i, histonames.c_str(), channel_labels[j].c_str(), i, histonames.c_str()));
+	histos_dirt.push_back(h3);
+	TH1F *h4 = (TH1F*)f_ext->Get(Form("C%d_P_%s/h_%s_C%d_P_%s", i, histonames.c_str(), channel_labels[j].c_str(), i, histonames.c_str()));
+	histos_ext.push_back(h4);
     }
     for (int j = 0; j < histos_nue.size()-1; ++j){
       histos_nue[j]->Add(histos_numu[j]);
@@ -102,7 +117,9 @@ void LeTable_NeutrinoSelectionFilter(string dirname, int kcuts){
 
   vector<string> tableL = {" ","1e0p0pi","1enp0pi","1eother","1muother","1mu1pi0","ncother","ncpi0","cosmic","outoffv","other","EXT","MC+EXT","BNB","Purity [\\%]","Efficiency[\\%]"};
   ofstream myfile;
-  myfile.open (Form("%s/LeTable.txt",plotdir.Data()));
+  cout << Form("%s",plotdir.Data()) << endl; 
+  //myfile.open (Form("%s/LeTable.txt",plotdir.Data()));
+  myfile.open ("LeTable.txt");
   myfile << "\\begin{center} \n";
   myfile << "\\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}\n";
   myfile << "\\hline\n";
@@ -150,6 +167,7 @@ std::vector<string> get_labels(TFile *f) {
   }
   return labels;
 }
+
 TString getDir( const std::string& subdir ){
 	TString getdir( subdir );
  	if( 0 != system( Form( "test -d %s", getdir.Data()))){
