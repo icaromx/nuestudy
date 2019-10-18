@@ -24,7 +24,7 @@ std::vector<string> get_labels(TFile *f);
 TString getDir( const std::string& subdir );
 
 
-void Plotter_NeutrinoSelectionFilter(string dirname){
+void SinglePlot_NeutrinoSelectionFilter(string dirname, string varname, int cutnum, double xmin, double xmax, double ymin, double ymax){
   //TString workdir = getDir( "/Users/ivan/Work/eLEE");
   TString workdir = getDir( "$APP/work/eLEE");
   TString histdir = getDir( Form("%s/results/%s",workdir.Data(),dirname.c_str()));
@@ -33,7 +33,6 @@ void Plotter_NeutrinoSelectionFilter(string dirname){
   gROOT -> SetStyle("Plain");
   gStyle->SetOptStat(0);
   gStyle->SetFrameLineWidth(2);
-  //gStyle->SetLineWidth(2);
   gStyle->SetHistLineWidth(4);
 
   gStyle->SetPadTopMargin(0.05);
@@ -66,80 +65,31 @@ void Plotter_NeutrinoSelectionFilter(string dirname){
   std::vector<string> histoLabels = get_labels(f_nue);
 
   vector<string> channel_labels = {"1e0p0pi","1enp0pi","1eother","1muother","1mu1pi0","ncother","ncpi0","cosmic","outoffv","other","data"};
-  //vector<string> legend_labels = {"1eother","1e0p0pi","1enp0pi","1muother","1mu1pi0","ncother","ncpi0","cosmic","outoffv","dataEXT"};
-  //std::vector<unsigned> vOrder = {1,2,0,3,4,5,6,7,8,9,10};
   vector<int> hist_Fill = {kGreen,kGreen+3, kGreen-3, kAzure+2, kAzure+3, kAzure+6, kAzure+7, kRed-4, kRed+3, kGray+1, kBlack};
   vector<int> hist_FillStyle = {kGreen,kGreen+3, kGreen-3, kAzure+2, kAzure+3, kAzure+6, kAzure+7, kRed-4, kRed+3, kGray+1, 3544};
 
-  std::vector<double> xmax, ymax, logymax, xmin;
-  double ymin = 0.01; 
-  for(unsigned i = 0 ; i < 64; i++){
-	if(i > 8) break;
-	if(i < 9){//EDepo 8
-		xmax.push_back(30);
-		xmin.push_back(0.0);
-		ymax.push_back(400000);
-	}else if(i>=9 && i < 18){//LowEDepo 8
-		xmax.push_back(0.8);
-		xmin.push_back(0.0);
-		ymax.push_back(400000);
-	}else if(i >= 18 && i < 40){//shr_dedx 3x8=24
-		xmax.push_back(20);
-		xmin.push_back(0.0);
-		ymax.push_back(600);
-	}else if(i >= 40 && i < 48){//shr_start 3x8 = 24
-		xmax.push_back(1050.0);
-		xmin.push_back(0.0);
-		ymax.push_back(200);
-	}else if(i >= 48 && i < 56){//shr_start 3x8 = 24
-		xmax.push_back(120.0);
-		xmin.push_back(-120.0);
-		ymax.push_back(200);
-	}else if(i >= 56 && i < 64){//shr_start 3x8 = 24
-		xmax.push_back(250.0);
-		xmin.push_back(0.0);
-		ymax.push_back(200);
-	}else if(i >= 64 && i < 72){//shr_start 3x8 = 24
-		xmax.push_back(1050.0);
-		xmin.push_back(0.0);
-		ymax.push_back(200);
-	}else if(i >= 72 && i < 80){//shr_start 3x8 = 24
-		xmax.push_back(120.0);
-		xmin.push_back(-120.0);
-		ymax.push_back(200);
-	}else if(i >= 80 && i < 88){//shr_start 3x8 = 24
-		xmax.push_back(250.0);
-		xmin.push_back(0.0);
-		ymax.push_back(200);
-	}else{//nu_sce_x 8
-		xmax.push_back(250);
-		xmin.push_back(0.0);
-		ymax.push_back(20);
-	}
-  }
-  cout << "xmax.size() = " << xmax.size() << ", ymax.size() = " << ymax.size() <<", histoLabels.size() = " << histoLabels.size() << endl;	
+  //std::vector<double> xmax, ymax, logymax, xmin;
   
+ // cout << "xmax.size() = " << xmax.size() << ", ymax.size() = " << ymax.size() <<", histoLabels.size() = " << histoLabels.size() << endl;	
   
-  if(xmax.size() != histoLabels.size()) exit (EXIT_FAILURE);
-
-
-  for (int i = 0; i < histoLabels.size(); ++i){
-    cout << histoLabels[i] << endl;
+    //cout << histoLabels[i] << endl;
     std::vector<TH1F *> histos_nue;
     std::vector<TH1F *> histos_numu;
     std::vector<TH1F *> histos_databnb;
     std::vector<TH1F *> histos_dirt;
     std::vector<TH1F *> histos_ext;
+    //C0_P_closestNuCosmicDist/h_1e0p0pi_C0_P_closestNuCosmicDist
     for (int j = 0; j < channel_labels.size(); ++j){
-      TH1F *h = (TH1F*)f_nue->Get(Form("%s/h_%s_%s", histoLabels[i].c_str(), channel_labels[j].c_str(), histoLabels[i].c_str()));
+      TString hname = Form("C%d_P_%s/h_%s_C%d_P_%s", cutnum, varname.c_str(), channel_labels[j].c_str(), cutnum, varname.c_str());
+      TH1F *h = (TH1F*)f_nue->Get(hname);
       histos_nue.push_back(h);
-      TH1F *h1 = (TH1F*)f_numu->Get(Form("%s/h_%s_%s",histoLabels[i].c_str(),channel_labels[j].c_str(),histoLabels[i].c_str()));
+      TH1F *h1 = (TH1F*)f_numu->Get(hname);
       histos_numu.push_back(h1);
-      TH1F *h2 = (TH1F*)f_databnb->Get(Form("%s/h_%s_%s",histoLabels[i].c_str(),channel_labels[j].c_str(),histoLabels[i].c_str()));
+      TH1F *h2 = (TH1F*)f_databnb->Get(hname);
       histos_databnb.push_back(h2);
-      TH1F *h3 = (TH1F*)f_dirt->Get(Form("%s/h_%s_%s",histoLabels[i].c_str(),channel_labels[j].c_str(),histoLabels[i].c_str()));
+      TH1F *h3 = (TH1F*)f_dirt->Get(hname);
       histos_dirt.push_back(h3);
-      TH1F *h4 = (TH1F*)f_ext->Get(Form("%s/h_%s_%s",histoLabels[i].c_str(),channel_labels[j].c_str(),histoLabels[i].c_str()));
+      TH1F *h4 = (TH1F*)f_ext->Get(hname);
       histos_ext.push_back(h4);
     }
     for (int j = 0; j < histos_nue.size()-1; ++j){
@@ -156,7 +106,7 @@ void Plotter_NeutrinoSelectionFilter(string dirname){
       legend->AddEntry(histos_nue[j],Form("%s: %f",channel_labels[j].c_str(),histos_nue[j]->Integral() ),"f");
       //cout << histos_nue[j]->Integral() << ", name = " << histos_nue[j]->GetTitle() << endl;
     }
-
+    TString picname = Form("C%d_%s.png", cutnum, varname.c_str());
     histos_ext[10]->SetFillColor(kBlack);
     histos_ext[10]->SetFillStyle(3544);
     //histos_ext[10]->Rebin(10);
@@ -190,7 +140,7 @@ void Plotter_NeutrinoSelectionFilter(string dirname){
 
     //legend->Draw("same");
     g->Update();
-    g->SaveAs(Form("%s/RP_LOG_%s.png",plotdir.Data(), histoLabels[i].c_str()));
+    g->SaveAs(Form("%s/RP_LOG_%s",plotdir.Data(), picname.Data()));
     delete g;
 
     TCanvas *e = new TCanvas("e","e",1500,1100);
@@ -224,9 +174,8 @@ void Plotter_NeutrinoSelectionFilter(string dirname){
 
     //legend->Draw("same");
     e->Update();
-    e->SaveAs(Form("%s/RP_LINE_%s.png",plotdir.Data(), histoLabels[i].c_str()));
+    e->SaveAs(Form("%s/RP_LINE_%s",plotdir.Data(), picname.Data()));
     delete e;
-  }
 }
 
 std::vector<string> get_labels(TFile *f) {

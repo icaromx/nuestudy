@@ -40,47 +40,55 @@ void NeutrinoSelectionFilter::Loop(string sample, float potweight_nosw, string n
 	double Edepo, shrStart, potweight;
 	int mucat;
 	double Low_nuE = 0.2; double High_nuE = 0.6;
+	int numCuts = 9;	
 	//////////////////////////////////////
 	// DEFINE HISTOGRAMS
 	//////////////////////////////////////
-	CutHistosGen C_Edepo("P_Edepo","Deposited Energy [GeV]",8,100,0,6, chanLabels);
+	CutHistosGen C_Edepo("P_Edepo","Deposited Energy [GeV]",numCuts,100,0,6, chanLabels);
 	std::vector< std::vector< TH1F *> > hC_Edepo = C_Edepo.GetHists();
 
-	CutHistosGen C_LowEdepo("P_LowEdepo","Deposited Energy [GeV]",8,100,0,6, chanLabels);
+	CutHistosGen C_LowEdepo("P_LowEdepo","Deposited Energy [GeV]",numCuts,100,0,6, chanLabels);
 	std::vector< std::vector< TH1F *> > hC_LowEdepo = C_LowEdepo.GetHists();
 
-	CutHistosGen muC_Edepo("muC_Edepo","Deposited Energy [GeV]",8,100,0,6, muchanLabels);
+	CutHistosGen C_shr_energy_tot("P_shr_energy_tot","Deposited Energy [GeV]",numCuts,100,0,6, chanLabels);
+	std::vector< std::vector< TH1F *> > hC_shr_energy_tot = C_shr_energy_tot.GetHists();
+	
+	CutHistosGen muC_Edepo("muC_Edepo","Deposited Energy [GeV]",numCuts,100,0,6, muchanLabels);
 	std::vector< std::vector< TH1F *> > muhC_Edepo = muC_Edepo.GetHists();
 
-	CutHistosGen C_shr_dedx_Y("P_shr_dedx_Y","Shower dE/dx (Y Plane) [GeV/cm]",8,100,0,20, chanLabels);
+	CutHistosGen C_shr_dedx_Y("P_shr_dedx_Y","Shower dE/dx (Y Plane) [GeV/cm]",numCuts,100,0,20, chanLabels);
 	std::vector< std::vector< TH1F *> > hC_shr_dedx_Y = C_shr_dedx_Y.GetHists();
 
-	CutHistosGen C_shr_dedx_V("P_shr_dedx_V","Shower dE/dx (V Plane) [GeV/cm]",8,100,0,20, chanLabels);
+	CutHistosGen C_shr_dedx_V("P_shr_dedx_V","Shower dE/dx (V Plane) [GeV/cm]",numCuts,100,0,20, chanLabels);
 	std::vector< std::vector< TH1F *> > hC_shr_dedx_V = C_shr_dedx_V.GetHists();
 
-	CutHistosGen C_shr_dedx_U("P_shr_dedx_U","Shower dE/dx (U Plane) [GeV/cm]",8,100,0,20, chanLabels);
+	CutHistosGen C_shr_dedx_U("P_shr_dedx_U","Shower dE/dx (U Plane) [GeV/cm]",numCuts,100,0,20, chanLabels);
 	std::vector< std::vector< TH1F *> > hC_shr_dedx_U = C_shr_dedx_U.GetHists();
 
-	CutHistosGen C_shr_start_z("P_shr_start_z","Shower Start Z [cm]",8,500,0,1050, chanLabels);
+	CutHistosGen C_shr_start_z("P_shr_start_z","Shower Start Z [cm]",numCuts,500,0,1050, chanLabels);
 	std::vector< std::vector< TH1F *> > hC_shr_start_z = C_shr_start_z.GetHists();
 	
-	CutHistosGen C_shr_start_y("P_shr_start_y","Shower Start Y [cm]",8,500,-120,120, chanLabels);
+	CutHistosGen C_shr_start_y("P_shr_start_y","Shower Start Y [cm]",numCuts,500,-120,120, chanLabels);
 	std::vector< std::vector< TH1F *> > hC_shr_start_y = C_shr_start_y.GetHists();
 	
-	CutHistosGen C_shr_start_x("P_shr_start_x","Shower Start X [cm]",8,500,0,250, chanLabels);
+	CutHistosGen C_shr_start_x("P_shr_start_x","Shower Start X [cm]",numCuts,500,0,250, chanLabels);
 	std::vector< std::vector< TH1F *> > hC_shr_start_x = C_shr_start_x.GetHists();
 	
-	CutHistosGen C_vtx_z("P_vtx_z","Vertex Z [cm]",8,500,0,1050, chanLabels);
+	CutHistosGen C_vtx_z("P_vtx_z","Vertex Z [cm]",numCuts,500,0,1050, chanLabels);
 	std::vector< std::vector< TH1F *> > hC_vtx_z = C_vtx_z.GetHists();
 	
-	CutHistosGen C_vtx_y("P_vtx_y","Vertex Y [cm]",8,500,-120,120, chanLabels);
+	CutHistosGen C_vtx_y("P_vtx_y","Vertex Y [cm]",numCuts,500,-120,120, chanLabels);
 	std::vector< std::vector< TH1F *> > hC_vtx_y = C_vtx_y.GetHists();
 	
-	CutHistosGen C_vtx_x("P_vtx_x","Vertex X [cm]",8,500,0,250, chanLabels);
+	CutHistosGen C_vtx_x("P_vtx_x","Vertex X [cm]",numCuts,500,0,250, chanLabels);
 	std::vector< std::vector< TH1F *> > hC_vtx_x = C_vtx_x.GetHists();
 
-	CutHistosGen C_nu_sce_x("P_nu_sce_x","nu_sce_x [cm]",8,500,0,250, chanLabels);
+	CutHistosGen C_nu_sce_x("P_nu_sce_x","nu_sce_x [cm]",numCuts,500,0,250, chanLabels);
 	std::vector< std::vector< TH1F *> > hC_nu_sce_x = C_nu_sce_x.GetHists();
+
+	CutHistosGen C_closestNuCosmicDist("P_closestNuCosmicDist","_closestNuCosmicDist [cm]", numCuts,60,0,30,chanLabels);
+	std::vector< std::vector< TH1F *> > hC_closestNuCosmicDist = C_closestNuCosmicDist.GetHists();
+
 	//////////////////////////////////////////////////////
 
 	std::cout << "Sample is: " << sample << std::endl;
@@ -89,18 +97,18 @@ void NeutrinoSelectionFilter::Loop(string sample, float potweight_nosw, string n
 	Long64_t nbytes = 0, nb = 0;
 	cout << "VECTOR SIZE: " << hC_Edepo.size() << endl;
 	for (Long64_t jentry=0; jentry<nentries;jentry++){
-
 		Long64_t ientry = LoadTree(jentry);
 		if (ientry < 0) break;
 		nb = fChain->GetEntry(jentry); nbytes += nb;
 		///////VARIABLES///////
 		Edepo = shr_energy_tot + 0.02 + trk_energy_tot;
-		if(sample == "databnb" || sample == "ext") {
-			potweight = potweight_nosw;
-		}else{
+		potweight = potweight_nosw;
+		//if(sample == "databnb" || sample == "ext") {
+		//	potweight = potweight_nosw;
+		//}else{
 			//potweight = potweight_nosw*weightSpline;
-			potweight = potweight_nosw;
-		}
+		//	potweight = potweight_nosw;
+		//}
 		//////////////////////
 		if(sample == "numu" && nu_pdg != 14) continue;
 		///////////////////////////////////////////////////
@@ -111,6 +119,7 @@ void NeutrinoSelectionFilter::Loop(string sample, float potweight_nosw, string n
 		vFillHistos(hC_shr_dedx_Y[0], shr_dedx_Y, category, potweight);
 		vFillHistos(hC_shr_dedx_V[0], shr_dedx_V, category, potweight);
 		vFillHistos(hC_shr_dedx_U[0], shr_dedx_U, category, potweight);
+		vFillHistos(hC_shr_energy_tot[0],shr_energy_tot, category, potweight);
 		if (nu_e >= Low_nuE && nu_e <= High_nuE) vFillHistos(hC_LowEdepo[0], Edepo, category, potweight);
 		vFillHistos(hC_shr_start_z[0], shr_start_z, category, potweight);
 		vFillHistos(hC_shr_start_y[0], shr_start_y, category, potweight);
@@ -119,12 +128,14 @@ void NeutrinoSelectionFilter::Loop(string sample, float potweight_nosw, string n
 		vFillHistos(hC_vtx_y[0], vtx_y, category, potweight);
 		vFillHistos(hC_vtx_x[0], vtx_x, category, potweight);
 		vFillHistos(hC_nu_sce_x[0],nu_sce_x,category,potweight);
+		vFillHistos(hC_closestNuCosmicDist[0],_closestNuCosmicDist,category,potweight);
 		///////////////////////////////////////////////////
-		if(!(nslice == 1)) continue;
+		if(!(nslice == 1)) continue; //Cut #1
 
 		vFillHistos(hC_Edepo[1], Edepo, category, potweight);
 		vFillHistos(hC_shr_dedx_Y[1], shr_dedx_Y, category, potweight);
 		vFillHistos(hC_shr_dedx_V[1], shr_dedx_V, category, potweight);
+		vFillHistos(hC_shr_energy_tot[0],shr_energy_tot, category, potweight);
 		vFillHistos(hC_shr_dedx_U[1], shr_dedx_U, category, potweight);
 		if (category == 2) vmuFillHistos(muhC_Edepo[1], Edepo, nproton, npion, potweight);
 		if (nu_e >= Low_nuE && nu_e <= High_nuE) vFillHistos(hC_LowEdepo[1], Edepo, category, potweight);
@@ -135,12 +146,14 @@ void NeutrinoSelectionFilter::Loop(string sample, float potweight_nosw, string n
 		vFillHistos(hC_vtx_y[1], vtx_y, category, potweight);
 		vFillHistos(hC_vtx_x[1], vtx_x, category, potweight);
 		vFillHistos(hC_nu_sce_x[1],nu_sce_x,category,potweight);
+		vFillHistos(hC_closestNuCosmicDist[1],_closestNuCosmicDist,category,potweight);
 
 		///////////////////////////////////////////////////
-		if(!(slpdg == 12)) continue;
+		if(!(crthitpe < 100))//Cut #2
 		vFillHistos(hC_shr_dedx_Y[2], shr_dedx_Y, category, potweight);
 		vFillHistos(hC_shr_dedx_V[2], shr_dedx_V, category, potweight);
 		vFillHistos(hC_shr_dedx_U[2], shr_dedx_U, category, potweight);
+		vFillHistos(hC_shr_energy_tot[2],shr_energy_tot, category, potweight);
 		vFillHistos(hC_Edepo[2], Edepo, category, potweight);
 		if (category == 2) vmuFillHistos(muhC_Edepo[2], Edepo, nproton, npion, potweight);
 		if (nu_e >= Low_nuE && nu_e <= High_nuE) vFillHistos(hC_LowEdepo[2], Edepo, category, potweight);
@@ -151,11 +164,13 @@ void NeutrinoSelectionFilter::Loop(string sample, float potweight_nosw, string n
 		vFillHistos(hC_vtx_y[2], vtx_y, category, potweight);
 		vFillHistos(hC_vtx_x[2], vtx_x, category, potweight);
 		vFillHistos(hC_nu_sce_x[2],nu_sce_x,category,potweight);
+		vFillHistos(hC_closestNuCosmicDist[2],_closestNuCosmicDist,category,potweight);
 
 		///////////////////////////////////////////////////
-		if(!(contained_fraction > 0.9)) continue;
+		if(!(slpdg == 12)) continue;//Cut #3
 		vFillHistos(hC_shr_dedx_Y[3], shr_dedx_Y, category, potweight);
 		vFillHistos(hC_shr_dedx_V[3], shr_dedx_V, category, potweight);
+		vFillHistos(hC_shr_energy_tot[3],shr_energy_tot, category, potweight);
 		vFillHistos(hC_shr_dedx_U[3], shr_dedx_U, category, potweight);
 		if (category == 2) vmuFillHistos(muhC_Edepo[3], Edepo, nproton, npion, potweight);
 		vFillHistos(hC_Edepo[3], Edepo, category, potweight);
@@ -167,12 +182,14 @@ void NeutrinoSelectionFilter::Loop(string sample, float potweight_nosw, string n
 		vFillHistos(hC_vtx_y[3], vtx_y, category, potweight);
 		vFillHistos(hC_vtx_x[3], vtx_x, category, potweight);
 		vFillHistos(hC_nu_sce_x[3],nu_sce_x,category,potweight);
+		vFillHistos(hC_closestNuCosmicDist[3],_closestNuCosmicDist,category,potweight);
 
 		///////////////////////////////////////////////////
-		if(!(n_showers_contained > 0)) continue;
+		if(!(contained_fraction > 0.9)) continue;//Cut #4
 		vFillHistos(hC_shr_dedx_Y[4], shr_dedx_Y, category, potweight);
 		vFillHistos(hC_shr_dedx_V[4], shr_dedx_V, category, potweight);
 		vFillHistos(hC_shr_dedx_U[4], shr_dedx_U, category, potweight);
+		vFillHistos(hC_shr_energy_tot[4],shr_energy_tot, category, potweight);
 		if (category == 2) vmuFillHistos(muhC_Edepo[4], Edepo, nproton, npion, potweight);
 		vFillHistos(hC_Edepo[4], Edepo, category, potweight);
 		if (nu_e >= Low_nuE && nu_e <= High_nuE) vFillHistos(hC_LowEdepo[4], Edepo, category, potweight);
@@ -183,12 +200,14 @@ void NeutrinoSelectionFilter::Loop(string sample, float potweight_nosw, string n
 		vFillHistos(hC_vtx_y[4], vtx_y, category, potweight);
 		vFillHistos(hC_vtx_x[4], vtx_x, category, potweight);
 		vFillHistos(hC_nu_sce_x[4],nu_sce_x,category,potweight);
+		vFillHistos(hC_closestNuCosmicDist[4],_closestNuCosmicDist,category,potweight);
 
 		///////////////////////////////////////////////////
-		if(!(n_tracks_contained == 0)) continue;
+		if(!(n_showers_contained > 0)) continue;//Cut #5
 		vFillHistos(hC_shr_dedx_Y[5], shr_dedx_Y, category, potweight);
 		vFillHistos(hC_shr_dedx_V[5], shr_dedx_V, category, potweight);
 		vFillHistos(hC_shr_dedx_U[5], shr_dedx_U, category, potweight);
+		vFillHistos(hC_shr_energy_tot[5],shr_energy_tot, category, potweight);
 		if (category == 2) vmuFillHistos(muhC_Edepo[5], Edepo, nproton, npion, potweight);
 		vFillHistos(hC_Edepo[5], Edepo, category, potweight);
 		if (nu_e >= Low_nuE && nu_e <= High_nuE) vFillHistos(hC_LowEdepo[5], Edepo, category, potweight);
@@ -199,12 +218,13 @@ void NeutrinoSelectionFilter::Loop(string sample, float potweight_nosw, string n
 		vFillHistos(hC_vtx_y[5], vtx_y, category, potweight);
 		vFillHistos(hC_vtx_x[5], vtx_x, category, potweight);
 		vFillHistos(hC_nu_sce_x[5],nu_sce_x,category,potweight);
-
+		vFillHistos(hC_closestNuCosmicDist[5],_closestNuCosmicDist,category,potweight);
 		///////////////////////////////////////////////////
-		if(!((shr_energy_tot+0.02)/0.8 > 0.06)) continue;
+		if(!(n_tracks_contained == 0)) continue;//Cut #6
 		vFillHistos(hC_shr_dedx_Y[6], shr_dedx_Y, category, potweight);
 		vFillHistos(hC_shr_dedx_V[6], shr_dedx_V, category, potweight);
 		vFillHistos(hC_shr_dedx_U[6], shr_dedx_U, category, potweight);
+		vFillHistos(hC_shr_energy_tot[6],shr_energy_tot, category, potweight);
 		if (category == 2) vmuFillHistos(muhC_Edepo[6], Edepo, nproton, npion, potweight);
 		vFillHistos(hC_Edepo[6], Edepo, category, potweight);
 		if (nu_e >= Low_nuE && nu_e <= High_nuE) vFillHistos(hC_LowEdepo[6], Edepo, category, potweight);
@@ -215,12 +235,13 @@ void NeutrinoSelectionFilter::Loop(string sample, float potweight_nosw, string n
 		vFillHistos(hC_vtx_y[6], vtx_y, category, potweight);
 		vFillHistos(hC_vtx_x[6], vtx_x, category, potweight);
 		vFillHistos(hC_nu_sce_x[6], nu_sce_x, category,potweight);
-
+		vFillHistos(hC_closestNuCosmicDist[6],_closestNuCosmicDist,category,potweight);
 		///////////////////////////////////////////////////
-		if(!(shr_energy/shr_energy_tot > 0.8)) continue;
+		if(!((shr_energy_tot+0.02)/0.8 > 0.06)) continue;//Cut #7
 		vFillHistos(hC_shr_dedx_Y[7], shr_dedx_Y, category, potweight);
 		vFillHistos(hC_shr_dedx_V[7], shr_dedx_V, category, potweight);
 		vFillHistos(hC_shr_dedx_U[7], shr_dedx_U, category, potweight);
+		vFillHistos(hC_shr_energy_tot[7],shr_energy_tot, category, potweight);
 		if (category == 2) vmuFillHistos(muhC_Edepo[7], Edepo, nproton, npion, potweight);
 		vFillHistos(hC_Edepo[7], Edepo, category, potweight);
 		if (nu_e >= Low_nuE && nu_e <= High_nuE) vFillHistos(hC_LowEdepo[7], Edepo, category, potweight);
@@ -231,6 +252,24 @@ void NeutrinoSelectionFilter::Loop(string sample, float potweight_nosw, string n
 		vFillHistos(hC_vtx_y[7], vtx_y, category, potweight);
 		vFillHistos(hC_vtx_x[7], vtx_x, category, potweight);
 		vFillHistos(hC_nu_sce_x[7],nu_sce_x,category,potweight);
+		vFillHistos(hC_closestNuCosmicDist[7],_closestNuCosmicDist,category,potweight);
+		///////////////////////////////////////////////////
+		if(!(shr_energy/shr_energy_tot > 0.8)) continue;//Cut #8
+		vFillHistos(hC_shr_dedx_Y[8], shr_dedx_Y, category, potweight);
+		vFillHistos(hC_shr_dedx_V[8], shr_dedx_V, category, potweight);
+		vFillHistos(hC_shr_dedx_U[8], shr_dedx_U, category, potweight);
+		vFillHistos(hC_shr_energy_tot[8],shr_energy_tot, category, potweight);
+		if (category == 2) vmuFillHistos(muhC_Edepo[8], Edepo, nproton, npion, potweight);
+		vFillHistos(hC_Edepo[8], Edepo, category, potweight);
+		if (nu_e >= Low_nuE && nu_e <= High_nuE) vFillHistos(hC_LowEdepo[8], Edepo, category, potweight);
+		vFillHistos(hC_shr_start_z[8], shr_start_z, category, potweight);
+		vFillHistos(hC_shr_start_y[8], shr_start_y, category, potweight);
+		vFillHistos(hC_shr_start_x[8], shr_start_x, category, potweight);
+		vFillHistos(hC_vtx_z[8], vtx_z, category, potweight);
+		vFillHistos(hC_vtx_y[8], vtx_y, category, potweight);
+		vFillHistos(hC_vtx_x[8], vtx_x, category, potweight);
+		vFillHistos(hC_nu_sce_x[8],nu_sce_x,category,potweight);
+		vFillHistos(hC_closestNuCosmicDist[8],_closestNuCosmicDist,category,potweight);
 
 	}
 
@@ -251,6 +290,7 @@ void NeutrinoSelectionFilter::Loop(string sample, float potweight_nosw, string n
 	//cout << "my name is: " << HC_P_shr_energy.GetLabel() << endl;
 	vSaveCutHistos(outROOT, hC_Edepo, C_Edepo.GetLabel());
 	vSaveCutHistos(outROOT, hC_LowEdepo, C_LowEdepo.GetLabel());
+	vSaveCutHistos(outROOT, hC_shr_energy_tot, C_shr_energy_tot.GetLabel());
 	vSaveCutHistos(outROOT, hC_shr_dedx_Y, C_shr_dedx_Y.GetLabel());
 	vSaveCutHistos(outROOT, hC_shr_dedx_V, C_shr_dedx_V.GetLabel());
 	vSaveCutHistos(outROOT, hC_shr_dedx_U, C_shr_dedx_U.GetLabel());
@@ -261,8 +301,9 @@ void NeutrinoSelectionFilter::Loop(string sample, float potweight_nosw, string n
 	vSaveCutHistos(outROOT, hC_vtx_y, C_vtx_y.GetLabel());
 	vSaveCutHistos(outROOT, hC_vtx_x, C_vtx_x.GetLabel());
 	vSaveCutHistos(outROOT, hC_nu_sce_x, C_nu_sce_x.GetLabel());
+	vSaveCutHistos(outROOT, hC_closestNuCosmicDist, C_closestNuCosmicDist.GetLabel());
 
-	vSaveCutHistos(muoutROOT, muhC_Edepo, muC_Edepo.GetLabel());
+	//vSaveCutHistos(muoutROOT, muhC_Edepo, muC_Edepo.GetLabel());
 	//vSaveCutHistos(muoutROOT, muhC_Edepo, muC_Edepo.GetLabel());
 	/////////////////////////////////////////////////////////////////////
 //	LeTable_outROOT->Write(); LeTable_outROOT->Close();

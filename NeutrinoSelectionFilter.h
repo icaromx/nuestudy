@@ -1,8 +1,8 @@
 //////////////////////////////////////////////////////////
 // This class has been automatically generated on
-// Sat Aug 24 20:05:17 2019 by ROOT version 6.16/00
+// Wed Oct 16 11:58:01 2019 by ROOT version 6.18/00
 // from TTree NeutrinoSelectionFilter/Neutrino Selection TTree
-// found on file: /Users/ivan/Work/eLEE/nue1e0p_selection_v12/v17/prodgenie_bnb_intrinsic_nue_uboone_overlay_mcc9.1_run1_reco2.root
+// found on file: /uboone/data/users/davidc/searchingfornues/v08_00_00_25/cc0pinp/1013/prodgenie_bnb_intrinsic_nue_uboone_overlay_mcc9.1_run3_G_reco2.root
 //////////////////////////////////////////////////////////
 
 #ifndef NeutrinoSelectionFilter_h
@@ -13,12 +13,12 @@
 #include <TFile.h>
 
 // Header file for the classes stored in the TTree if any.
-//#include "c++/v1/vector"
-//#include "c++/v1/vector"
-//#include "c++/v1/vector"
+//#include <da_cos6-linux-gnu/include/c++/7.3.0/vector>
+//#include <da_cos6-linux-gnu/include/c++/7.3.0/vector>
 #include "vector"
-//#include "c++/v1/string"
-//#include "vector"
+#include "vector"
+#include "string"
+#include "vector"
 
 class NeutrinoSelectionFilter {
 public :
@@ -83,7 +83,9 @@ public :
    Float_t         trk_theta;
    Float_t         trk_phi;
    Float_t         trk_energy;
+   Float_t         trk_energy_muon;
    Float_t         trk_energy_tot;
+   Float_t         trk_energy_muon_tot;
    Float_t         trk_distance;
    Float_t         trk_score;
    Int_t           trk_bkt_pdg;
@@ -92,6 +94,8 @@ public :
    Float_t         trk_bkt_E;
    Float_t         trk_chipr_best;
    Float_t         trk_chipr_worst;
+   Float_t         trk_chimu_best;
+   Float_t         trk_chimu_worst;
    Float_t         trk_chipr;
    Float_t         trk_chimu;
    Float_t         trk_pida;
@@ -120,6 +124,8 @@ public :
    Float_t         contained_fraction;
    Float_t         pt;
    Float_t         p;
+   Float_t         pt_assume_muon;
+   Float_t         p_assume_muon;
    Float_t         dvtx;
    Float_t         dtrk;
    vector<double>  *dtrk_x_boundary;
@@ -136,6 +142,51 @@ public :
    vector<vector<double> > *dshr_boundary;
    vector<vector<double> > *dmc_boundary;
    Float_t         CosmicIP;
+   Int_t           _run;
+   Int_t           _sub;
+   Int_t           _evt;
+   Int_t           _nAssnCosmics;
+   Int_t           _kMaxCosm;
+   Double_t        _t0Cosm_v[200];   //[_kMaxCosm]
+   Double_t        _t0timesVCosm_v[200];   //[_kMaxCosm]
+   Double_t        _xStartCosm_v[200];   //[_kMaxCosm]
+   Double_t        _yStartCosm_v[200];   //[_kMaxCosm]
+   Double_t        _zStartCosm_v[200];   //[_kMaxCosm]
+   Double_t        _xEndCosm_v[200];   //[_kMaxCosm]
+   Double_t        _yEndCosm_v[200];   //[_kMaxCosm]
+   Double_t        _zEndCosm_v[200];   //[_kMaxCosm]
+   Double_t        _recoNu_vtx_x;
+   Double_t        _recoNu_vtx_y;
+   Double_t        _recoNu_vtx_z;
+   Double_t        _t0_nu_cosmic;
+   Double_t        _nu_cosmic_x;
+   Double_t        _nu_cosmic_y;
+   Double_t        _nu_cosmic_z;
+   Double_t        _nu_cosmic_Length;
+   Double_t        _nu_cosmic_Start_x;
+   Double_t        _nu_cosmic_Start_y;
+   Double_t        _nu_cosmic_Start_z;
+   Double_t        _nu_cosmic_End_x;
+   Double_t        _nu_cosmic_End_y;
+   Double_t        _nu_cosmic_End_z;
+   Double_t        _nu_cosmic_TrackID;
+   Double_t        _closestNuCosmicDist;
+   Double_t        _rand_vtx_x;
+   Double_t        _rand_vtx_y;
+   Double_t        _rand_vtx_z;
+   Double_t        _t0_rand_cosmic;
+   Double_t        _rand_cosmic_x;
+   Double_t        _rand_cosmic_y;
+   Double_t        _rand_cosmic_z;
+   Double_t        _rand_cosmic_Length;
+   Double_t        _rand_cosmic_Start_x;
+   Double_t        _rand_cosmic_Start_y;
+   Double_t        _rand_cosmic_Start_z;
+   Double_t        _rand_cosmic_End_x;
+   Double_t        _rand_cosmic_End_y;
+   Double_t        _rand_cosmic_End_z;
+   Double_t        _rand_cosmic_TrackID;
+   Double_t        _closestRandCosmicDist;
    Float_t         leeweight;
    Float_t         nu_vtx_x;
    Float_t         nu_vtx_y;
@@ -159,6 +210,19 @@ public :
    Float_t         vtx_z;
    Bool_t          isVtxInActive;
    Bool_t          isVtxInFiducial;
+   Float_t         true_nu_vtx_t;
+   Float_t         true_nu_vtx_x;
+   Float_t         true_nu_vtx_y;
+   Float_t         true_nu_vtx_z;
+   Float_t         true_nu_vtx_sce_x;
+   Float_t         true_nu_vtx_sce_y;
+   Float_t         true_nu_vtx_sce_z;
+   Float_t         reco_nu_vtx_x;
+   Float_t         reco_nu_vtx_y;
+   Float_t         reco_nu_vtx_z;
+   Float_t         reco_nu_vtx_sce_x;
+   Float_t         reco_nu_vtx_sce_y;
+   Float_t         reco_nu_vtx_sce_z;
    Int_t           nmuon;
    Float_t         muon_e;
    Float_t         muon_c;
@@ -192,11 +256,29 @@ public :
    vector<float>   *backtracked_e;
    vector<float>   *backtracked_purity;
    vector<float>   *backtracked_completeness;
+   vector<float>   *backtracked_overlay_purity;
+   vector<float>   *backtracked_px;
+   vector<float>   *backtracked_py;
+   vector<float>   *backtracked_pz;
+   vector<float>   *backtracked_start_x;
+   vector<float>   *backtracked_start_y;
+   vector<float>   *backtracked_start_z;
+   vector<float>   *backtracked_start_t;
+   vector<float>   *backtracked_start_U;
+   vector<float>   *backtracked_start_V;
+   vector<float>   *backtracked_start_Y;
+   vector<float>   *backtracked_sce_start_x;
+   vector<float>   *backtracked_sce_start_y;
+   vector<float>   *backtracked_sce_start_z;
+   vector<float>   *backtracked_sce_start_U;
+   vector<float>   *backtracked_sce_start_V;
+   vector<float>   *backtracked_sce_start_Y;
    Float_t         lep_e;
    Int_t           pass;
    Int_t           run;
    Int_t           sub;
    Int_t           evt;
+   Int_t           swtrig;
    Float_t         xtimeoffset;
    Float_t         xsceoffset;
    Float_t         ysceoffset;
@@ -204,33 +286,50 @@ public :
    Int_t           evnhits;
    Int_t           slpdg;
    Int_t           slnhits;
+   Int_t           n_pfps;
+   Int_t           n_tracks;
+   Int_t           n_showers;
+   vector<float>   *trk_score_v;
    vector<int>     *pfpdg;
    vector<int>     *pfnhits;
-   vector<vector<int> > *pfnplanehits;
+   vector<int>     *pfnplanehits_U;
+   vector<int>     *pfnplanehits_V;
+   vector<int>     *pfnplanehits_Y;
    UInt_t          hits_u;
    UInt_t          hits_v;
    UInt_t          hits_y;
    Float_t         topological_score;
+   Float_t         slclustfrac;
    vector<int>     *mc_pdg;
-   vector<double>  *mc_E;
-   vector<double>  *mc_vx;
-   vector<double>  *mc_vy;
-   vector<double>  *mc_vz;
-   vector<double>  *mc_endx;
-   vector<double>  *mc_endy;
-   vector<double>  *mc_endz;
-   vector<double>  *mc_px;
-   vector<double>  *mc_py;
-   vector<double>  *mc_pz;
+   vector<float>   *mc_E;
+   vector<float>   *mc_vx;
+   vector<float>   *mc_vy;
+   vector<float>   *mc_vz;
+   vector<float>   *mc_endx;
+   vector<float>   *mc_endy;
+   vector<float>   *mc_endz;
+   vector<float>   *mc_px;
+   vector<float>   *mc_py;
+   vector<float>   *mc_pz;
+   vector<float>   *mc_completeness;
+   vector<float>   *mc_purity;
    string          *endmuonprocess;
    Float_t         endmuonmichel;
+   map<string,vector<double> > *weights;
    vector<double>  *weightsFlux;
+   vector<double>  *weightsGenie;
    vector<double>  *weightsReint;
    Float_t         weightSpline;
    Float_t         nu_flashmatch_score;
    Float_t         best_cosmic_flashmatch_score;
    Float_t         best_obviouscosmic_flashmatch_score;
    vector<float>   *cosmic_flashmatch_score_v;
+   Float_t         NeutrinoEnergy0;
+   Float_t         NeutrinoEnergy1;
+   Float_t         NeutrinoEnergy2;
+   Float_t         SliceCaloEnergy0;
+   Float_t         SliceCaloEnergy1;
+   Float_t         SliceCaloEnergy2;
    Float_t         gamma_edep;
    Float_t         gamma_etot;
    Float_t         gamma_dist;
@@ -249,34 +348,52 @@ public :
    Int_t           nslnoise_pl1;
    Int_t           nhits_pl1;
    Float_t         frac_slnoise_pl1;
-   vector<double>  *shr_dedx_u_v;
-   vector<double>  *shr_dedx_v_v;
-   vector<double>  *shr_dedx_y_v;
-   vector<double>  *shr_energy_u_v;
-   vector<double>  *shr_energy_v_v;
-   vector<double>  *shr_energy_y_v;
+   vector<float>   *shr_dedx_u_v;
+   vector<float>   *shr_dedx_v_v;
+   vector<float>   *shr_dedx_y_v;
+   vector<float>   *shr_energy_u_v;
+   vector<float>   *shr_energy_v_v;
+   vector<float>   *shr_energy_y_v;
    vector<unsigned long> *shr_pfp_id_v;
-   vector<double>  *shr_start_x_v;
-   vector<double>  *shr_start_y_v;
-   vector<double>  *shr_start_z_v;
-   vector<double>  *shr_dist_v;
-   vector<double>  *shr_px_v;
-   vector<double>  *shr_py_v;
-   vector<double>  *shr_pz_v;
-   vector<double>  *shr_theta_v;
-   vector<double>  *shr_phi_v;
-   vector<double>  *shr_score_v;
-   UInt_t          n_showers;
+   vector<float>   *shr_start_x_v;
+   vector<float>   *shr_start_y_v;
+   vector<float>   *shr_start_z_v;
+   vector<float>   *shr_start_U_v;
+   vector<float>   *shr_start_V_v;
+   vector<float>   *shr_dist_v;
+   vector<int>     *shr_nclus_v;
+   vector<float>   *shr_clushitfrac_v;
+   vector<float>   *shr_px_v;
+   vector<float>   *shr_py_v;
+   vector<float>   *shr_pz_v;
+   vector<float>   *shr_openangle_v;
+   vector<float>   *shr_theta_v;
+   vector<float>   *shr_phi_v;
    vector<int>     *shr_tkfit_nhits_v;
-   vector<double>  *shr_tkfit_start_x_v;
-   vector<double>  *shr_tkfit_start_y_v;
-   vector<double>  *shr_tkfit_start_z_v;
-   vector<double>  *shr_tkfit_theta_v;
-   vector<double>  *shr_tkfit_phi_v;
-   vector<double>  *shr_tkfit_dedx_y_v;
-   vector<double>  *shr_tkfit_dedx_u_v;
-   vector<double>  *shr_tkfit_dedx_v_v;
-   vector<vector<int> > *shr_tkfit_dedx_nhits_v;
+   vector<float>   *shr_tkfit_start_x_v;
+   vector<float>   *shr_tkfit_start_y_v;
+   vector<float>   *shr_tkfit_start_z_v;
+   vector<float>   *shr_tkfit_start_U_v;
+   vector<float>   *shr_tkfit_start_V_v;
+   vector<float>   *shr_tkfit_theta_v;
+   vector<float>   *shr_tkfit_phi_v;
+   vector<float>   *shr_tkfit_dedx_u_v;
+   vector<float>   *shr_tkfit_dedx_v_v;
+   vector<float>   *shr_tkfit_dedx_y_v;
+   vector<int>     *shr_tkfit_dedx_nhits_u_v;
+   vector<int>     *shr_tkfit_dedx_nhits_v_v;
+   vector<int>     *shr_tkfit_dedx_nhits_y_v;
+   vector<float>   *shr_spacepoint_start_x_v;
+   vector<float>   *shr_spacepoint_start_y_v;
+   vector<float>   *shr_spacepoint_start_z_v;
+   vector<float>   *shr_spacepoint_start_U_v;
+   vector<float>   *shr_spacepoint_start_V_v;
+   vector<float>   *shr_hits_start_U_wire_v;
+   vector<float>   *shr_hits_start_U_x_v;
+   vector<float>   *shr_hits_start_V_wire_v;
+   vector<float>   *shr_hits_start_V_x_v;
+   vector<float>   *shr_hits_start_Y_wire_v;
+   vector<float>   *shr_hits_start_Y_x_v;
    Int_t           evnunhits;
    Int_t           evlepnhits;
    Int_t           evpronhits;
@@ -301,36 +418,57 @@ public :
    vector<int>     *pfneunhits;
    vector<int>     *pfgamnhits;
    vector<int>     *pfothnhits;
-   UInt_t          n_tracks;
-   vector<float>   *trk_score_v;
-   vector<double>  *trk_bragg_p_v;
-   vector<double>  *trk_bragg_mu_v;
-   vector<double>  *trk_bragg_mip_v;
-   vector<double>  *trk_pida_v;
-   vector<double>  *trk_pid_chipr_v;
-   vector<double>  *trk_pid_chipi_v;
-   vector<double>  *trk_pid_chika_v;
-   vector<double>  *trk_pid_chimu_v;
-   vector<unsigned long> *trk_pfp_id;
-   vector<double>  *trk_dir_x;
-   vector<double>  *trk_dir_y;
-   vector<double>  *trk_dir_z;
-   vector<double>  *trk_start_x;
-   vector<double>  *trk_start_y;
-   vector<double>  *trk_start_z;
-   vector<double>  *trk_end_x;
-   vector<double>  *trk_end_y;
-   vector<double>  *trk_end_z;
-   vector<double>  *trk_dist_v;
-   vector<double>  *trk_theta_v;
-   vector<double>  *trk_phi_v;
-   vector<double>  *trk_len_v;
-   vector<double>  *trk_energy_proton;
-   vector<double>  *trk_energy_muon;
+   vector<float>   *trk_bragg_p_v;
+   vector<float>   *trk_bragg_mu_v;
+   vector<float>   *trk_bragg_mip_v;
+   vector<float>   *trk_pida_v;
+   vector<float>   *trk_pid_chipr_v;
+   vector<float>   *trk_pid_chipi_v;
+   vector<float>   *trk_pid_chika_v;
+   vector<float>   *trk_pid_chimu_v;
+   vector<float>   *trk_bragg_p_u_v;
+   vector<float>   *trk_bragg_mu_u_v;
+   vector<float>   *trk_bragg_mip_u_v;
+   vector<float>   *trk_pida_u_v;
+   vector<float>   *trk_pid_chipr_u_v;
+   vector<float>   *trk_pid_chipi_u_v;
+   vector<float>   *trk_pid_chika_u_v;
+   vector<float>   *trk_pid_chimu_u_v;
+   vector<float>   *trk_bragg_p_v_v;
+   vector<float>   *trk_bragg_mu_v_v;
+   vector<float>   *trk_bragg_mip_v_v;
+   vector<float>   *trk_pida_v_v;
+   vector<float>   *trk_pid_chipr_v_v;
+   vector<float>   *trk_pid_chipi_v_v;
+   vector<float>   *trk_pid_chika_v_v;
+   vector<float>   *trk_pid_chimu_v_v;
+   vector<unsigned long> *trk_pfp_id_v;
+   vector<float>   *trk_dir_x_v;
+   vector<float>   *trk_dir_y_v;
+   vector<float>   *trk_dir_z_v;
+   vector<float>   *trk_start_x_v;
+   vector<float>   *trk_start_y_v;
+   vector<float>   *trk_start_z_v;
+   vector<float>   *trk_end_x_v;
+   vector<float>   *trk_end_y_v;
+   vector<float>   *trk_end_z_v;
+   vector<float>   *trk_distance_v;
+   vector<float>   *trk_theta_v;
+   vector<float>   *trk_phi_v;
+   vector<float>   *trk_len_v;
+   vector<float>   *trk_mcs_muon_mom_v;
+   vector<float>   *trk_energy_proton_v;
+   vector<float>   *trk_energy_muon_v;
+   Float_t         bdt_nuNCpi0;
+   Float_t         bdt_numuCCpi0;
+   Float_t         bdt_numuCC;
+   Float_t         bdt_ext;
+   Float_t         bdt_cosmic;
+   Float_t         bdt_global;
 
    // List of branches
    TBranch        *b_selected;   //!
-   //TBranch        b_trk_id;   //!
+   TBranch        *b_trk_pfp_id;   //!
    TBranch        *b_shr_pfp_id;   //!
    TBranch        *b_shr_energy_tot;   //!
    TBranch        *b_shr_energy;   //!
@@ -384,7 +522,9 @@ public :
    TBranch        *b_trk_theta;   //!
    TBranch        *b_trk_phi;   //!
    TBranch        *b_trk_energy;   //!
+   TBranch        *b_trk_energy_muon;   //!
    TBranch        *b_trk_energy_tot;   //!
+   TBranch        *b_trk_energy_muon_tot;   //!
    TBranch        *b_trk_distance;   //!
    TBranch        *b_trk_score;   //!
    TBranch        *b_trk_bkt_pdg;   //!
@@ -393,6 +533,8 @@ public :
    TBranch        *b_trk_bkt_E;   //!
    TBranch        *b_trk_chipr_best;   //!
    TBranch        *b_trk_chipr_worst;   //!
+   TBranch        *b_trk_chimu_best;   //!
+   TBranch        *b_trk_chimu_worst;   //!
    TBranch        *b_trk_chipr;   //!
    TBranch        *b_trk_chimu;   //!
    TBranch        *b_trk_pida;   //!
@@ -421,6 +563,8 @@ public :
    TBranch        *b_contained_fraction;   //!
    TBranch        *b_pt;   //!
    TBranch        *b_p;   //!
+   TBranch        *b_pt_assume_muon;   //!
+   TBranch        *b_p_assume_muon;   //!
    TBranch        *b_dvtx;   //!
    TBranch        *b_dtrk;   //!
    TBranch        *b_dtrk_x_boundary;   //!
@@ -437,6 +581,51 @@ public :
    TBranch        *b_dshr_boundary;   //!
    TBranch        *b_dmc_boundary;   //!
    TBranch        *b_CosmicIP;   //!
+   TBranch        *b_run;   //!
+   TBranch        *b_sub;   //!
+   TBranch        *b_evt;   //!
+   TBranch        *b__nAssnCosmics;   //!
+   TBranch        *b__kMaxCosm;   //!
+   TBranch        *b__t0Cosm_v;   //!
+   TBranch        *b__t0timesVCosm_v;   //!
+   TBranch        *b__xStartCosm_v;   //!
+   TBranch        *b__yStartCosm_v;   //!
+   TBranch        *b__zStartCosm_v;   //!
+   TBranch        *b__xEndCosm_v;   //!
+   TBranch        *b__yEndCosm_v;   //!
+   TBranch        *b__zEndCosm_v;   //!
+   TBranch        *b_reco_vtx_x;   //!
+   TBranch        *b_reco_vtx_y;   //!
+   TBranch        *b_reco_vtx_z;   //!
+   TBranch        *b__t0_nu_cosmic;   //!
+   TBranch        *b__nu_cosmic_x;   //!
+   TBranch        *b__nu_cosmic_y;   //!
+   TBranch        *b__nu_cosmic_z;   //!
+   TBranch        *b__nu_cosmic_Length;   //!
+   TBranch        *b__nu_cosmic_Start_x;   //!
+   TBranch        *b__nu_cosmic_Start_y;   //!
+   TBranch        *b__nu_cosmic_Start_z;   //!
+   TBranch        *b__nu_cosmic_End_x;   //!
+   TBranch        *b__nu_cosmic_End_y;   //!
+   TBranch        *b__nu_cosmic_End_z;   //!
+   TBranch        *b__nu_cosmic_TrackID;   //!
+   TBranch        *b__closestNuCosmicDist;   //!
+   TBranch        *b_rand_vtx_x;   //!
+   TBranch        *b_rand_vtx_y;   //!
+   TBranch        *b_rand_vtx_z;   //!
+   TBranch        *b__t0_rand_cosmic;   //!
+   TBranch        *b__rand_cosmic_x;   //!
+   TBranch        *b__rand_cosmic_y;   //!
+   TBranch        *b__rand_cosmic_z;   //!
+   TBranch        *b__rand_cosmic_Length;   //!
+   TBranch        *b__rand_cosmic_Start_x;   //!
+   TBranch        *b__rand_cosmic_Start_y;   //!
+   TBranch        *b__rand_cosmic_Start_z;   //!
+   TBranch        *b__rand_cosmic_End_x;   //!
+   TBranch        *b__rand_cosmic_End_y;   //!
+   TBranch        *b__rand_cosmic_End_z;   //!
+   TBranch        *b__rand_cosmic_TrackID;   //!
+   TBranch        *b__closestRandCosmicDist;   //!
    TBranch        *b_leeweight;   //!
    TBranch        *b_nu_vtx_x;   //!
    TBranch        *b_nu_vtx_y;   //!
@@ -460,6 +649,19 @@ public :
    TBranch        *b_vtx_z;   //!
    TBranch        *b_isVtxInActive;   //!
    TBranch        *b_isVtxInFiducial;   //!
+   TBranch        *b_true_nu_vtx_t;   //!
+   TBranch        *b_true_nu_vtx_x;   //!
+   TBranch        *b_true_nu_vtx_y;   //!
+   TBranch        *b_true_nu_vtx_z;   //!
+   TBranch        *b_true_nu_vtx_sce_x;   //!
+   TBranch        *b_true_nu_vtx_sce_y;   //!
+   TBranch        *b_true_nu_vtx_sce_z;   //!
+   TBranch        *b_reco_nu_vtx_x;   //!
+   TBranch        *b_reco_nu_vtx_y;   //!
+   TBranch        *b_reco_nu_vtx_z;   //!
+   TBranch        *b_reco_nu_vtx_sce_x;   //!
+   TBranch        *b_reco_nu_vtx_sce_y;   //!
+   TBranch        *b_reco_nu_vtx_sce_z;   //!
    TBranch        *b_nmuon;   //!
    TBranch        *b_muon_e;   //!
    TBranch        *b_muon_c;   //!
@@ -493,11 +695,26 @@ public :
    TBranch        *b_backtracked_e;   //!
    TBranch        *b_backtracked_purity;   //!
    TBranch        *b_backtracked_completeness;   //!
+   TBranch        *b_backtracked_overlay_purity;   //!
+   TBranch        *b_backtracked_px;   //!
+   TBranch        *b_backtracked_py;   //!
+   TBranch        *b_backtracked_pz;   //!
+   TBranch        *b_backtracked_start_x;   //!
+   TBranch        *b_backtracked_start_y;   //!
+   TBranch        *b_backtracked_start_z;   //!
+   TBranch        *b_backtracked_start_t;   //!
+   TBranch        *b_backtracked_start_U;   //!
+   TBranch        *b_backtracked_start_V;   //!
+   TBranch        *b_backtracked_start_Y;   //!
+   TBranch        *b_backtracked_sce_start_x;   //!
+   TBranch        *b_backtracked_sce_start_y;   //!
+   TBranch        *b_backtracked_sce_start_z;   //!
+   TBranch        *b_backtracked_sce_start_U;   //!
+   TBranch        *b_backtracked_sce_start_V;   //!
+   TBranch        *b_backtracked_sce_start_Y;   //!
    TBranch        *b_lep_e;   //!
    TBranch        *b_pass;   //!
-   TBranch        *b_run;   //!
-   TBranch        *b_sub;   //!
-   TBranch        *b_evt;   //!
+   TBranch        *b_swtrig;   //!
    TBranch        *b_xtimeoffset;   //!
    TBranch        *b_xsceoffset;   //!
    TBranch        *b_ysceoffset;   //!
@@ -505,13 +722,20 @@ public :
    TBranch        *b_evnhits;   //!
    TBranch        *b_slpdg;   //!
    TBranch        *b_slnhits;   //!
+   TBranch        *b_n_pfps;   //!
+   TBranch        *b_n_tracks;   //!
+   TBranch        *b_n_showers;   //!
+   TBranch        *b_trk_score_v;   //!
    TBranch        *b_pfpdg;   //!
    TBranch        *b_pfnhits;   //!
-   TBranch        *b_pfnplanehits;   //!
+   TBranch        *b_pfnplanehits_U;   //!
+   TBranch        *b_pfnplanehits_V;   //!
+   TBranch        *b_pfnplanehits_Y;   //!
    TBranch        *b_hits_u;   //!
    TBranch        *b_hits_v;   //!
    TBranch        *b_hits_y;   //!
    TBranch        *b_topological_score;   //!
+   TBranch        *b_slclustfrac;   //!
    TBranch        *b_mc_pdg;   //!
    TBranch        *b_mc_E;   //!
    TBranch        *b_mc_vx;   //!
@@ -523,15 +747,25 @@ public :
    TBranch        *b_mc_px;   //!
    TBranch        *b_mc_py;   //!
    TBranch        *b_mc_pz;   //!
+   TBranch        *b_mc_completeness;   //!
+   TBranch        *b_mc_purity;   //!
    TBranch        *b_endmuonprocess;   //!
    TBranch        *b_endmuonmichel;   //!
+   TBranch        *b_weights;   //!
    TBranch        *b_weightsFlux;   //!
+   TBranch        *b_weightsGenie;   //!
    TBranch        *b_weightsReint;   //!
    TBranch        *b_weightSpline;   //!
    TBranch        *b_nu_flashmatch_score;   //!
    TBranch        *b_best_cosmic_flashmatch_score;   //!
    TBranch        *b_best_obviouscosmic_flashmatch_score;   //!
    TBranch        *b_cosmic_flashmatch_score_v;   //!
+   TBranch        *b_NeutrinoEnergy0;   //!
+   TBranch        *b_NeutrinoEnergy1;   //!
+   TBranch        *b_NeutrinoEnergy2;   //!
+   TBranch        *b_SliceCaloEnergy0;   //!
+   TBranch        *b_SliceCaloEnergy1;   //!
+   TBranch        *b_SliceCaloEnergy2;   //!
    TBranch        *b_gamma_edep;   //!
    TBranch        *b_gamma_etot;   //!
    TBranch        *b_gamma_dist;   //!
@@ -560,24 +794,42 @@ public :
    TBranch        *b_shr_start_x_v;   //!
    TBranch        *b_shr_start_y_v;   //!
    TBranch        *b_shr_start_z_v;   //!
+   TBranch        *b_shr_start_U_v;   //!
+   TBranch        *b_shr_start_V_v;   //!
    TBranch        *b_shr_dist_v;   //!
+   TBranch        *b_shr_nclus_v;   //!
+   TBranch        *b_shr_clushitfrac_v;   //!
    TBranch        *b_shr_px_v;   //!
    TBranch        *b_shr_py_v;   //!
    TBranch        *b_shr_pz_v;   //!
+   TBranch        *b_shr_openangle_v;   //!
    TBranch        *b_shr_theta_v;   //!
    TBranch        *b_shr_phi_v;   //!
-   TBranch        *b_shr_score_v;   //!
-   TBranch        *b_n_showers;   //!
    TBranch        *b_shr_tkfit_nhits_v;   //!
    TBranch        *b_shr_tkfit_start_x_v;   //!
    TBranch        *b_shr_tkfit_start_y_v;   //!
    TBranch        *b_shr_tkfit_start_z_v;   //!
+   TBranch        *b_shr_tkfit_start_U_v;   //!
+   TBranch        *b_shr_tkfit_start_V_v;   //!
    TBranch        *b_shr_tkfit_theta_v;   //!
    TBranch        *b_shr_tkfit_phi_v;   //!
-   TBranch        *b_shr_tkfit_dedx_y_v;   //!
    TBranch        *b_shr_tkfit_dedx_u_v;   //!
    TBranch        *b_shr_tkfit_dedx_v_v;   //!
-   TBranch        *b_shr_tkfit_dedx_nhits_v;   //!
+   TBranch        *b_shr_tkfit_dedx_y_v;   //!
+   TBranch        *b_shr_tkfit_dedx_nhits_u_v;   //!
+   TBranch        *b_shr_tkfit_dedx_nhits_v_v;   //!
+   TBranch        *b_shr_tkfit_dedx_nhits_y_v;   //!
+   TBranch        *b_shr_spacepoint_start_x_v;   //!
+   TBranch        *b_shr_spacepoint_start_y_v;   //!
+   TBranch        *b_shr_spacepoint_start_z_v;   //!
+   TBranch        *b_shr_spacepoint_start_U_v;   //!
+   TBranch        *b_shr_spacepoint_start_V_v;   //!
+   TBranch        *b_shr_hits_start_U_wire_v;   //!
+   TBranch        *b_shr_hits_start_U_x_v;   //!
+   TBranch        *b_shr_hits_start_V_wire_v;   //!
+   TBranch        *b_shr_hits_start_V_x_v;   //!
+   TBranch        *b_shr_hits_start_Y_wire_v;   //!
+   TBranch        *b_shr_hits_start_Y_x_v;   //!
    TBranch        *b_evnunhits;   //!
    TBranch        *b_evlepnhits;   //!
    TBranch        *b_evpronhits;   //!
@@ -602,8 +854,6 @@ public :
    TBranch        *b_pfneunhits;   //!
    TBranch        *b_pfgamnhits;   //!
    TBranch        *b_pfothnhits;   //!
-   TBranch        *b_n_tracks;   //!
-   TBranch        *b_trk_score_v;   //!
    TBranch        *b_trk_bragg_p_v;   //!
    TBranch        *b_trk_bragg_mu_v;   //!
    TBranch        *b_trk_bragg_mip_v;   //!
@@ -612,22 +862,45 @@ public :
    TBranch        *b_trk_pid_chipi_v;   //!
    TBranch        *b_trk_pid_chika_v;   //!
    TBranch        *b_trk_pid_chimu_v;   //!
-   TBranch        *b_trk_pfp_id;   //!
-   TBranch        *b_trk_dir_x;   //!
-   TBranch        *b_trk_dir_y;   //!
-   TBranch        *b_trk_dir_z;   //!
-   TBranch        *b_trk_start_x;   //!
-   TBranch        *b_trk_start_y;   //!
-   TBranch        *b_trk_start_z;   //!
-   TBranch        *b_trk_end_x;   //!
-   TBranch        *b_trk_end_y;   //!
-   TBranch        *b_trk_end_z;   //!
-   TBranch        *b_trk_dist_v;   //!
+   TBranch        *b_trk_bragg_p_u_v;   //!
+   TBranch        *b_trk_bragg_mu_u_v;   //!
+   TBranch        *b_trk_bragg_mip_u_v;   //!
+   TBranch        *b_trk_pida_u_v;   //!
+   TBranch        *b_trk_pid_chipr_u_v;   //!
+   TBranch        *b_trk_pid_chipi_u_v;   //!
+   TBranch        *b_trk_pid_chika_u_v;   //!
+   TBranch        *b_trk_pid_chimu_u_v;   //!
+   TBranch        *b_trk_bragg_p_v_v;   //!
+   TBranch        *b_trk_bragg_mu_v_v;   //!
+   TBranch        *b_trk_bragg_mip_v_v;   //!
+   TBranch        *b_trk_pida_v_v;   //!
+   TBranch        *b_trk_pid_chipr_v_v;   //!
+   TBranch        *b_trk_pid_chipi_v_v;   //!
+   TBranch        *b_trk_pid_chika_v_v;   //!
+   TBranch        *b_trk_pid_chimu_v_v;   //!
+   TBranch        *b_trk_pfp_id_v;   //!
+   TBranch        *b_trk_dir_x_v;   //!
+   TBranch        *b_trk_dir_y_v;   //!
+   TBranch        *b_trk_dir_z_v;   //!
+   TBranch        *b_trk_start_x_v;   //!
+   TBranch        *b_trk_start_y_v;   //!
+   TBranch        *b_trk_start_z_v;   //!
+   TBranch        *b_trk_end_x_v;   //!
+   TBranch        *b_trk_end_y_v;   //!
+   TBranch        *b_trk_end_z_v;   //!
+   TBranch        *b_trk_distance_v;   //!
    TBranch        *b_trk_theta_v;   //!
    TBranch        *b_trk_phi_v;   //!
    TBranch        *b_trk_len_v;   //!
-   TBranch        *b_trk_energy_proton;   //!
-   TBranch        *b_trk_energy_muon;   //!
+   TBranch        *b_trk_mcs_muon_mom_v;   //!
+   TBranch        *b_trk_energy_proton_v;   //!
+   TBranch        *b_trk_energy_muon_v;   //!
+   TBranch        *b_bdt_nuNCpi0;   //!
+   TBranch        *b_bdt_numuCCpi0;   //!
+   TBranch        *b_bdt_numuCC;   //!
+   TBranch        *b_bdt_ext;   //!
+   TBranch        *b_bdt_cosmic;   //!
+   TBranch        *b_bdt_global;   //!
 
    NeutrinoSelectionFilter(TString filename, string sample, string namedir);
    virtual ~NeutrinoSelectionFilter();
@@ -643,59 +916,29 @@ public :
 #endif
 
 #ifdef NeutrinoSelectionFilter_cxx
-NeutrinoSelectionFilter::NeutrinoSelectionFilter(TString filename, string sample, string namedir) : fChain(0)
+NeutrinoSelectionFilter::NeutrinoSelectionFilter(TString filename, string sample, string namedir) : fChain(0) 
 {
 // if parameter tree is not specified (or zero), connect the file
 // used to generate this class and read the Tree.
-
-//Must be in 10^19
-
-    // v17 Values//
-  float pot_bnb_data = 4.498;
-  //float pot_nuemc = 10174.3;
-  float pot_numumc = 111.208;
-  float pot_dirt = 9.43574;
-  float ext_scale = .34816;
-
-    // test sample values//
-//   float pot_bnb_data = 0.4623;
-//   float pot_nuemc = 2078.46;
-//   float pot_numumc = 0.891267;
-//   float pot_dirt = 25.7546;
-//   float ext_scale = 1.13882;
-
-    //v12 sample//
-   //float pot_bnb_data = 4.5;
-   float pot_nuemc = 4774.18;
-
-    // v15 Sample//
-//   float pot_bnb_data = ;
-//   float pot_nuemc = 119.01;
-//   float pot_numumc = 9979.43;
-//   float pot_dirt = 25.891;
-//   float ext_scale = .28701;
-
-
-   float potweight;
-   cout << Form("%s:/nuselection",filename.Data()) << endl;
-   TTree *tree = 0;
-   TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject(Form("%s",filename.Data()));
-   if (!f || !f->IsOpen()) {
-      f = new TFile(Form("%s",filename.Data()));
-   }
-   TDirectory * dir = (TDirectory*)f->Get(Form("%s:/nuselection",filename.Data()));
-   //TDirectory * dir = (TDirectory*)f->Get("/Users/ivan/Work/eLEE/nue1e0p_selection_v12/v17/prodgenie_bnb_intrinsic_nue_uboone_overlay_mcc9.1_run1_reco2.root:/nuselection");
-   if (sample == "nue")       potweight=pot_bnb_data/pot_nuemc;
-   if (sample == "numu")      potweight=pot_bnb_data/pot_numumc;
-   if (sample == "databnb")   potweight=1;
-   if (sample == "dirt")      potweight=pot_bnb_data/pot_dirt;
-   if (sample == "ext")       potweight=ext_scale;
-
-   cout << "dir = " << dir << endl;
-   cout << Form("%s.root:nuselection",filename.Data()) << Form(" potweight = %f",potweight) << endl;
-   dir->GetObject("NeutrinoSelectionFilter",tree);
-   Init(tree);
-   Loop(sample, potweight, namedir);
+	float potweight;
+	cout << Form("%s:/nuselection",filename.Data()) << endl;
+	TTree *tree = 0;
+	TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject(Form("%s",filename.Data()));
+	if (!f || !f->IsOpen()) {
+		f = new TFile(Form("%s",filename.Data()));
+	}
+	TDirectory * dir = (TDirectory*)f->Get(Form("%s:/nuselection",filename.Data()));
+	if (sample == "nue")       potweight=0.000055;
+	if (sample == "numu")      potweight=0.00733;
+	if (sample == "databnb")   potweight=1;
+	if (sample == "dirt")      potweight=0.0234;
+	if (sample == "ext")       potweight=0.05355;
+	
+	cout << "dir = " << dir << endl;
+	cout << Form("%s.root:nuselection",filename.Data()) << Form(" potweight = %f",potweight) << endl;
+	dir->GetObject("NeutrinoSelectionFilter",tree);
+	Init(tree);
+	Loop(sample, potweight, namedir);
 
 }
 
@@ -753,9 +996,29 @@ void NeutrinoSelectionFilter::Init(TTree *tree)
    backtracked_e = 0;
    backtracked_purity = 0;
    backtracked_completeness = 0;
+   backtracked_overlay_purity = 0;
+   backtracked_px = 0;
+   backtracked_py = 0;
+   backtracked_pz = 0;
+   backtracked_start_x = 0;
+   backtracked_start_y = 0;
+   backtracked_start_z = 0;
+   backtracked_start_t = 0;
+   backtracked_start_U = 0;
+   backtracked_start_V = 0;
+   backtracked_start_Y = 0;
+   backtracked_sce_start_x = 0;
+   backtracked_sce_start_y = 0;
+   backtracked_sce_start_z = 0;
+   backtracked_sce_start_U = 0;
+   backtracked_sce_start_V = 0;
+   backtracked_sce_start_Y = 0;
+   trk_score_v = 0;
    pfpdg = 0;
    pfnhits = 0;
-   pfnplanehits = 0;
+   pfnplanehits_U = 0;
+   pfnplanehits_V = 0;
+   pfnplanehits_Y = 0;
    mc_pdg = 0;
    mc_E = 0;
    mc_vx = 0;
@@ -767,8 +1030,12 @@ void NeutrinoSelectionFilter::Init(TTree *tree)
    mc_px = 0;
    mc_py = 0;
    mc_pz = 0;
+   mc_completeness = 0;
+   mc_purity = 0;
    endmuonprocess = 0;
+   weights = 0;
    weightsFlux = 0;
+   weightsGenie = 0;
    weightsReint = 0;
    cosmic_flashmatch_score_v = 0;
    shr_dedx_u_v = 0;
@@ -781,23 +1048,42 @@ void NeutrinoSelectionFilter::Init(TTree *tree)
    shr_start_x_v = 0;
    shr_start_y_v = 0;
    shr_start_z_v = 0;
+   shr_start_U_v = 0;
+   shr_start_V_v = 0;
    shr_dist_v = 0;
+   shr_nclus_v = 0;
+   shr_clushitfrac_v = 0;
    shr_px_v = 0;
    shr_py_v = 0;
    shr_pz_v = 0;
+   shr_openangle_v = 0;
    shr_theta_v = 0;
    shr_phi_v = 0;
-   shr_score_v = 0;
    shr_tkfit_nhits_v = 0;
    shr_tkfit_start_x_v = 0;
    shr_tkfit_start_y_v = 0;
    shr_tkfit_start_z_v = 0;
+   shr_tkfit_start_U_v = 0;
+   shr_tkfit_start_V_v = 0;
    shr_tkfit_theta_v = 0;
    shr_tkfit_phi_v = 0;
-   shr_tkfit_dedx_y_v = 0;
    shr_tkfit_dedx_u_v = 0;
    shr_tkfit_dedx_v_v = 0;
-   shr_tkfit_dedx_nhits_v = 0;
+   shr_tkfit_dedx_y_v = 0;
+   shr_tkfit_dedx_nhits_u_v = 0;
+   shr_tkfit_dedx_nhits_v_v = 0;
+   shr_tkfit_dedx_nhits_y_v = 0;
+   shr_spacepoint_start_x_v = 0;
+   shr_spacepoint_start_y_v = 0;
+   shr_spacepoint_start_z_v = 0;
+   shr_spacepoint_start_U_v = 0;
+   shr_spacepoint_start_V_v = 0;
+   shr_hits_start_U_wire_v = 0;
+   shr_hits_start_U_x_v = 0;
+   shr_hits_start_V_wire_v = 0;
+   shr_hits_start_V_x_v = 0;
+   shr_hits_start_Y_wire_v = 0;
+   shr_hits_start_Y_x_v = 0;
    pfnunhits = 0;
    pflepnhits = 0;
    pfpronhits = 0;
@@ -806,7 +1092,6 @@ void NeutrinoSelectionFilter::Init(TTree *tree)
    pfneunhits = 0;
    pfgamnhits = 0;
    pfothnhits = 0;
-   trk_score_v = 0;
    trk_bragg_p_v = 0;
    trk_bragg_mu_v = 0;
    trk_bragg_mip_v = 0;
@@ -815,22 +1100,39 @@ void NeutrinoSelectionFilter::Init(TTree *tree)
    trk_pid_chipi_v = 0;
    trk_pid_chika_v = 0;
    trk_pid_chimu_v = 0;
-   trk_pfp_id = 0;
-   trk_dir_x = 0;
-   trk_dir_y = 0;
-   trk_dir_z = 0;
-   trk_start_x = 0;
-   trk_start_y = 0;
-   trk_start_z = 0;
-   trk_end_x = 0;
-   trk_end_y = 0;
-   trk_end_z = 0;
-   trk_dist_v = 0;
+   trk_bragg_p_u_v = 0;
+   trk_bragg_mu_u_v = 0;
+   trk_bragg_mip_u_v = 0;
+   trk_pida_u_v = 0;
+   trk_pid_chipr_u_v = 0;
+   trk_pid_chipi_u_v = 0;
+   trk_pid_chika_u_v = 0;
+   trk_pid_chimu_u_v = 0;
+   trk_bragg_p_v_v = 0;
+   trk_bragg_mu_v_v = 0;
+   trk_bragg_mip_v_v = 0;
+   trk_pida_v_v = 0;
+   trk_pid_chipr_v_v = 0;
+   trk_pid_chipi_v_v = 0;
+   trk_pid_chika_v_v = 0;
+   trk_pid_chimu_v_v = 0;
+   trk_pfp_id_v = 0;
+   trk_dir_x_v = 0;
+   trk_dir_y_v = 0;
+   trk_dir_z_v = 0;
+   trk_start_x_v = 0;
+   trk_start_y_v = 0;
+   trk_start_z_v = 0;
+   trk_end_x_v = 0;
+   trk_end_y_v = 0;
+   trk_end_z_v = 0;
+   trk_distance_v = 0;
    trk_theta_v = 0;
    trk_phi_v = 0;
    trk_len_v = 0;
-   trk_energy_proton = 0;
-   trk_energy_muon = 0;
+   trk_mcs_muon_mom_v = 0;
+   trk_energy_proton_v = 0;
+   trk_energy_muon_v = 0;
    // Set branch addresses and branch pointers
    if (!tree) return;
    fChain = tree;
@@ -838,7 +1140,7 @@ void NeutrinoSelectionFilter::Init(TTree *tree)
    fChain->SetMakeClass(1);
 
    fChain->SetBranchAddress("selected", &selected, &b_selected);
-   //fChain->SetBranchAddress("trk_id", &trk_id, &b_trk_id);
+   fChain->SetBranchAddress("trk_id", &trk_id, &b_trk_pfp_id);
    fChain->SetBranchAddress("shr_id", &shr_id, &b_shr_pfp_id);
    fChain->SetBranchAddress("shr_energy_tot", &shr_energy_tot, &b_shr_energy_tot);
    fChain->SetBranchAddress("shr_energy", &shr_energy, &b_shr_energy);
@@ -892,7 +1194,9 @@ void NeutrinoSelectionFilter::Init(TTree *tree)
    fChain->SetBranchAddress("trk_theta", &trk_theta, &b_trk_theta);
    fChain->SetBranchAddress("trk_phi", &trk_phi, &b_trk_phi);
    fChain->SetBranchAddress("trk_energy", &trk_energy, &b_trk_energy);
+   fChain->SetBranchAddress("trk_energy_muon", &trk_energy_muon, &b_trk_energy_muon);
    fChain->SetBranchAddress("trk_energy_tot", &trk_energy_tot, &b_trk_energy_tot);
+   fChain->SetBranchAddress("trk_energy_muon_tot", &trk_energy_muon_tot, &b_trk_energy_muon_tot);
    fChain->SetBranchAddress("trk_distance", &trk_distance, &b_trk_distance);
    fChain->SetBranchAddress("trk_score", &trk_score, &b_trk_score);
    fChain->SetBranchAddress("trk_bkt_pdg", &trk_bkt_pdg, &b_trk_bkt_pdg);
@@ -901,6 +1205,8 @@ void NeutrinoSelectionFilter::Init(TTree *tree)
    fChain->SetBranchAddress("trk_bkt_E", &trk_bkt_E, &b_trk_bkt_E);
    fChain->SetBranchAddress("trk_chipr_best", &trk_chipr_best, &b_trk_chipr_best);
    fChain->SetBranchAddress("trk_chipr_worst", &trk_chipr_worst, &b_trk_chipr_worst);
+   fChain->SetBranchAddress("trk_chimu_best", &trk_chimu_best, &b_trk_chimu_best);
+   fChain->SetBranchAddress("trk_chimu_worst", &trk_chimu_worst, &b_trk_chimu_worst);
    fChain->SetBranchAddress("trk_chipr", &trk_chipr, &b_trk_chipr);
    fChain->SetBranchAddress("trk_chimu", &trk_chimu, &b_trk_chimu);
    fChain->SetBranchAddress("trk_pida", &trk_pida, &b_trk_pida);
@@ -929,6 +1235,8 @@ void NeutrinoSelectionFilter::Init(TTree *tree)
    fChain->SetBranchAddress("contained_fraction", &contained_fraction, &b_contained_fraction);
    fChain->SetBranchAddress("pt", &pt, &b_pt);
    fChain->SetBranchAddress("p", &p, &b_p);
+   fChain->SetBranchAddress("pt_assume_muon", &pt_assume_muon, &b_pt_assume_muon);
+   fChain->SetBranchAddress("p_assume_muon", &p_assume_muon, &b_p_assume_muon);
    fChain->SetBranchAddress("dvtx", &dvtx, &b_dvtx);
    fChain->SetBranchAddress("dtrk", &dtrk, &b_dtrk);
    fChain->SetBranchAddress("dtrk_x_boundary", &dtrk_x_boundary, &b_dtrk_x_boundary);
@@ -945,6 +1253,51 @@ void NeutrinoSelectionFilter::Init(TTree *tree)
    fChain->SetBranchAddress("dshr_boundary", &dshr_boundary, &b_dshr_boundary);
    fChain->SetBranchAddress("dmc_boundary", &dmc_boundary, &b_dmc_boundary);
    fChain->SetBranchAddress("CosmicIP", &CosmicIP, &b_CosmicIP);
+   fChain->SetBranchAddress("_run", &_run, &b_run);
+   fChain->SetBranchAddress("_sub", &_sub, &b_sub);
+   fChain->SetBranchAddress("_evt", &_evt, &b_evt);
+   fChain->SetBranchAddress("_nAssnCosmics", &_nAssnCosmics, &b__nAssnCosmics);
+   fChain->SetBranchAddress("_kMaxCosm", &_kMaxCosm, &b__kMaxCosm);
+   fChain->SetBranchAddress("_t0Cosm_v", _t0Cosm_v, &b__t0Cosm_v);
+   fChain->SetBranchAddress("_t0timesVCosm_v", _t0timesVCosm_v, &b__t0timesVCosm_v);
+   fChain->SetBranchAddress("_xStartCosm_v", _xStartCosm_v, &b__xStartCosm_v);
+   fChain->SetBranchAddress("_yStartCosm_v", _yStartCosm_v, &b__yStartCosm_v);
+   fChain->SetBranchAddress("_zStartCosm_v", _zStartCosm_v, &b__zStartCosm_v);
+   fChain->SetBranchAddress("_xEndCosm_v", _xEndCosm_v, &b__xEndCosm_v);
+   fChain->SetBranchAddress("_yEndCosm_v", _yEndCosm_v, &b__yEndCosm_v);
+   fChain->SetBranchAddress("_zEndCosm_v", _zEndCosm_v, &b__zEndCosm_v);
+   fChain->SetBranchAddress("_recoNu_vtx_x", &_recoNu_vtx_x, &b_reco_vtx_x);
+   fChain->SetBranchAddress("_recoNu_vtx_y", &_recoNu_vtx_y, &b_reco_vtx_y);
+   fChain->SetBranchAddress("_recoNu_vtx_z", &_recoNu_vtx_z, &b_reco_vtx_z);
+   fChain->SetBranchAddress("_t0_nu_cosmic", &_t0_nu_cosmic, &b__t0_nu_cosmic);
+   fChain->SetBranchAddress("_nu_cosmic_x", &_nu_cosmic_x, &b__nu_cosmic_x);
+   fChain->SetBranchAddress("_nu_cosmic_y", &_nu_cosmic_y, &b__nu_cosmic_y);
+   fChain->SetBranchAddress("_nu_cosmic_z", &_nu_cosmic_z, &b__nu_cosmic_z);
+   fChain->SetBranchAddress("_nu_cosmic_Length", &_nu_cosmic_Length, &b__nu_cosmic_Length);
+   fChain->SetBranchAddress("_nu_cosmic_Start_x", &_nu_cosmic_Start_x, &b__nu_cosmic_Start_x);
+   fChain->SetBranchAddress("_nu_cosmic_Start_y", &_nu_cosmic_Start_y, &b__nu_cosmic_Start_y);
+   fChain->SetBranchAddress("_nu_cosmic_Start_z", &_nu_cosmic_Start_z, &b__nu_cosmic_Start_z);
+   fChain->SetBranchAddress("_nu_cosmic_End_x", &_nu_cosmic_End_x, &b__nu_cosmic_End_x);
+   fChain->SetBranchAddress("_nu_cosmic_End_y", &_nu_cosmic_End_y, &b__nu_cosmic_End_y);
+   fChain->SetBranchAddress("_nu_cosmic_End_z", &_nu_cosmic_End_z, &b__nu_cosmic_End_z);
+   fChain->SetBranchAddress("_nu_cosmic_TrackID", &_nu_cosmic_TrackID, &b__nu_cosmic_TrackID);
+   fChain->SetBranchAddress("_closestNuCosmicDist", &_closestNuCosmicDist, &b__closestNuCosmicDist);
+   fChain->SetBranchAddress("_rand_vtx_x", &_rand_vtx_x, &b_rand_vtx_x);
+   fChain->SetBranchAddress("_rand_vtx_y", &_rand_vtx_y, &b_rand_vtx_y);
+   fChain->SetBranchAddress("_rand_vtx_z", &_rand_vtx_z, &b_rand_vtx_z);
+   fChain->SetBranchAddress("_t0_rand_cosmic", &_t0_rand_cosmic, &b__t0_rand_cosmic);
+   fChain->SetBranchAddress("_rand_cosmic_x", &_rand_cosmic_x, &b__rand_cosmic_x);
+   fChain->SetBranchAddress("_rand_cosmic_y", &_rand_cosmic_y, &b__rand_cosmic_y);
+   fChain->SetBranchAddress("_rand_cosmic_z", &_rand_cosmic_z, &b__rand_cosmic_z);
+   fChain->SetBranchAddress("_rand_cosmic_Length", &_rand_cosmic_Length, &b__rand_cosmic_Length);
+   fChain->SetBranchAddress("_rand_cosmic_Start_x", &_rand_cosmic_Start_x, &b__rand_cosmic_Start_x);
+   fChain->SetBranchAddress("_rand_cosmic_Start_y", &_rand_cosmic_Start_y, &b__rand_cosmic_Start_y);
+   fChain->SetBranchAddress("_rand_cosmic_Start_z", &_rand_cosmic_Start_z, &b__rand_cosmic_Start_z);
+   fChain->SetBranchAddress("_rand_cosmic_End_x", &_rand_cosmic_End_x, &b__rand_cosmic_End_x);
+   fChain->SetBranchAddress("_rand_cosmic_End_y", &_rand_cosmic_End_y, &b__rand_cosmic_End_y);
+   fChain->SetBranchAddress("_rand_cosmic_End_z", &_rand_cosmic_End_z, &b__rand_cosmic_End_z);
+   fChain->SetBranchAddress("_rand_cosmic_TrackID", &_rand_cosmic_TrackID, &b__rand_cosmic_TrackID);
+   fChain->SetBranchAddress("_closestRandCosmicDist", &_closestRandCosmicDist, &b__closestRandCosmicDist);
    fChain->SetBranchAddress("leeweight", &leeweight, &b_leeweight);
    fChain->SetBranchAddress("nu_vtx_x", &nu_vtx_x, &b_nu_vtx_x);
    fChain->SetBranchAddress("nu_vtx_y", &nu_vtx_y, &b_nu_vtx_y);
@@ -968,6 +1321,19 @@ void NeutrinoSelectionFilter::Init(TTree *tree)
    fChain->SetBranchAddress("vtx_z", &vtx_z, &b_vtx_z);
    fChain->SetBranchAddress("isVtxInActive", &isVtxInActive, &b_isVtxInActive);
    fChain->SetBranchAddress("isVtxInFiducial", &isVtxInFiducial, &b_isVtxInFiducial);
+   fChain->SetBranchAddress("true_nu_vtx_t", &true_nu_vtx_t, &b_true_nu_vtx_t);
+   fChain->SetBranchAddress("true_nu_vtx_x", &true_nu_vtx_x, &b_true_nu_vtx_x);
+   fChain->SetBranchAddress("true_nu_vtx_y", &true_nu_vtx_y, &b_true_nu_vtx_y);
+   fChain->SetBranchAddress("true_nu_vtx_z", &true_nu_vtx_z, &b_true_nu_vtx_z);
+   fChain->SetBranchAddress("true_nu_vtx_sce_x", &true_nu_vtx_sce_x, &b_true_nu_vtx_sce_x);
+   fChain->SetBranchAddress("true_nu_vtx_sce_y", &true_nu_vtx_sce_y, &b_true_nu_vtx_sce_y);
+   fChain->SetBranchAddress("true_nu_vtx_sce_z", &true_nu_vtx_sce_z, &b_true_nu_vtx_sce_z);
+   fChain->SetBranchAddress("reco_nu_vtx_x", &reco_nu_vtx_x, &b_reco_nu_vtx_x);
+   fChain->SetBranchAddress("reco_nu_vtx_y", &reco_nu_vtx_y, &b_reco_nu_vtx_y);
+   fChain->SetBranchAddress("reco_nu_vtx_z", &reco_nu_vtx_z, &b_reco_nu_vtx_z);
+   fChain->SetBranchAddress("reco_nu_vtx_sce_x", &reco_nu_vtx_sce_x, &b_reco_nu_vtx_sce_x);
+   fChain->SetBranchAddress("reco_nu_vtx_sce_y", &reco_nu_vtx_sce_y, &b_reco_nu_vtx_sce_y);
+   fChain->SetBranchAddress("reco_nu_vtx_sce_z", &reco_nu_vtx_sce_z, &b_reco_nu_vtx_sce_z);
    fChain->SetBranchAddress("nmuon", &nmuon, &b_nmuon);
    fChain->SetBranchAddress("muon_e", &muon_e, &b_muon_e);
    fChain->SetBranchAddress("muon_c", &muon_c, &b_muon_c);
@@ -1001,11 +1367,29 @@ void NeutrinoSelectionFilter::Init(TTree *tree)
    fChain->SetBranchAddress("backtracked_e", &backtracked_e, &b_backtracked_e);
    fChain->SetBranchAddress("backtracked_purity", &backtracked_purity, &b_backtracked_purity);
    fChain->SetBranchAddress("backtracked_completeness", &backtracked_completeness, &b_backtracked_completeness);
+   fChain->SetBranchAddress("backtracked_overlay_purity", &backtracked_overlay_purity, &b_backtracked_overlay_purity);
+   fChain->SetBranchAddress("backtracked_px", &backtracked_px, &b_backtracked_px);
+   fChain->SetBranchAddress("backtracked_py", &backtracked_py, &b_backtracked_py);
+   fChain->SetBranchAddress("backtracked_pz", &backtracked_pz, &b_backtracked_pz);
+   fChain->SetBranchAddress("backtracked_start_x", &backtracked_start_x, &b_backtracked_start_x);
+   fChain->SetBranchAddress("backtracked_start_y", &backtracked_start_y, &b_backtracked_start_y);
+   fChain->SetBranchAddress("backtracked_start_z", &backtracked_start_z, &b_backtracked_start_z);
+   fChain->SetBranchAddress("backtracked_start_t", &backtracked_start_t, &b_backtracked_start_t);
+   fChain->SetBranchAddress("backtracked_start_U", &backtracked_start_U, &b_backtracked_start_U);
+   fChain->SetBranchAddress("backtracked_start_V", &backtracked_start_V, &b_backtracked_start_V);
+   fChain->SetBranchAddress("backtracked_start_Y", &backtracked_start_Y, &b_backtracked_start_Y);
+   fChain->SetBranchAddress("backtracked_sce_start_x", &backtracked_sce_start_x, &b_backtracked_sce_start_x);
+   fChain->SetBranchAddress("backtracked_sce_start_y", &backtracked_sce_start_y, &b_backtracked_sce_start_y);
+   fChain->SetBranchAddress("backtracked_sce_start_z", &backtracked_sce_start_z, &b_backtracked_sce_start_z);
+   fChain->SetBranchAddress("backtracked_sce_start_U", &backtracked_sce_start_U, &b_backtracked_sce_start_U);
+   fChain->SetBranchAddress("backtracked_sce_start_V", &backtracked_sce_start_V, &b_backtracked_sce_start_V);
+   fChain->SetBranchAddress("backtracked_sce_start_Y", &backtracked_sce_start_Y, &b_backtracked_sce_start_Y);
    fChain->SetBranchAddress("lep_e", &lep_e, &b_lep_e);
    fChain->SetBranchAddress("pass", &pass, &b_pass);
    fChain->SetBranchAddress("run", &run, &b_run);
    fChain->SetBranchAddress("sub", &sub, &b_sub);
    fChain->SetBranchAddress("evt", &evt, &b_evt);
+   fChain->SetBranchAddress("swtrig", &swtrig, &b_swtrig);
    fChain->SetBranchAddress("xtimeoffset", &xtimeoffset, &b_xtimeoffset);
    fChain->SetBranchAddress("xsceoffset", &xsceoffset, &b_xsceoffset);
    fChain->SetBranchAddress("ysceoffset", &ysceoffset, &b_ysceoffset);
@@ -1013,13 +1397,20 @@ void NeutrinoSelectionFilter::Init(TTree *tree)
    fChain->SetBranchAddress("evnhits", &evnhits, &b_evnhits);
    fChain->SetBranchAddress("slpdg", &slpdg, &b_slpdg);
    fChain->SetBranchAddress("slnhits", &slnhits, &b_slnhits);
+   fChain->SetBranchAddress("n_pfps", &n_pfps, &b_n_pfps);
+   fChain->SetBranchAddress("n_tracks", &n_tracks, &b_n_tracks);
+   fChain->SetBranchAddress("n_showers", &n_showers, &b_n_showers);
+   fChain->SetBranchAddress("trk_score_v", &trk_score_v, &b_trk_score_v);
    fChain->SetBranchAddress("pfpdg", &pfpdg, &b_pfpdg);
    fChain->SetBranchAddress("pfnhits", &pfnhits, &b_pfnhits);
-   fChain->SetBranchAddress("pfnplanehits", &pfnplanehits, &b_pfnplanehits);
+   fChain->SetBranchAddress("pfnplanehits_U", &pfnplanehits_U, &b_pfnplanehits_U);
+   fChain->SetBranchAddress("pfnplanehits_V", &pfnplanehits_V, &b_pfnplanehits_V);
+   fChain->SetBranchAddress("pfnplanehits_Y", &pfnplanehits_Y, &b_pfnplanehits_Y);
    fChain->SetBranchAddress("hits_u", &hits_u, &b_hits_u);
    fChain->SetBranchAddress("hits_v", &hits_v, &b_hits_v);
    fChain->SetBranchAddress("hits_y", &hits_y, &b_hits_y);
    fChain->SetBranchAddress("topological_score", &topological_score, &b_topological_score);
+   fChain->SetBranchAddress("slclustfrac", &slclustfrac, &b_slclustfrac);
    fChain->SetBranchAddress("mc_pdg", &mc_pdg, &b_mc_pdg);
    fChain->SetBranchAddress("mc_E", &mc_E, &b_mc_E);
    fChain->SetBranchAddress("mc_vx", &mc_vx, &b_mc_vx);
@@ -1031,15 +1422,25 @@ void NeutrinoSelectionFilter::Init(TTree *tree)
    fChain->SetBranchAddress("mc_px", &mc_px, &b_mc_px);
    fChain->SetBranchAddress("mc_py", &mc_py, &b_mc_py);
    fChain->SetBranchAddress("mc_pz", &mc_pz, &b_mc_pz);
+   fChain->SetBranchAddress("mc_completeness", &mc_completeness, &b_mc_completeness);
+   fChain->SetBranchAddress("mc_purity", &mc_purity, &b_mc_purity);
    fChain->SetBranchAddress("endmuonprocess", &endmuonprocess, &b_endmuonprocess);
    fChain->SetBranchAddress("endmuonmichel", &endmuonmichel, &b_endmuonmichel);
+   fChain->SetBranchAddress("weights", &weights, &b_weights);
    fChain->SetBranchAddress("weightsFlux", &weightsFlux, &b_weightsFlux);
+   fChain->SetBranchAddress("weightsGenie", &weightsGenie, &b_weightsGenie);
    fChain->SetBranchAddress("weightsReint", &weightsReint, &b_weightsReint);
    fChain->SetBranchAddress("weightSpline", &weightSpline, &b_weightSpline);
    fChain->SetBranchAddress("nu_flashmatch_score", &nu_flashmatch_score, &b_nu_flashmatch_score);
    fChain->SetBranchAddress("best_cosmic_flashmatch_score", &best_cosmic_flashmatch_score, &b_best_cosmic_flashmatch_score);
    fChain->SetBranchAddress("best_obviouscosmic_flashmatch_score", &best_obviouscosmic_flashmatch_score, &b_best_obviouscosmic_flashmatch_score);
    fChain->SetBranchAddress("cosmic_flashmatch_score_v", &cosmic_flashmatch_score_v, &b_cosmic_flashmatch_score_v);
+   fChain->SetBranchAddress("NeutrinoEnergy0", &NeutrinoEnergy0, &b_NeutrinoEnergy0);
+   fChain->SetBranchAddress("NeutrinoEnergy1", &NeutrinoEnergy1, &b_NeutrinoEnergy1);
+   fChain->SetBranchAddress("NeutrinoEnergy2", &NeutrinoEnergy2, &b_NeutrinoEnergy2);
+   fChain->SetBranchAddress("SliceCaloEnergy0", &SliceCaloEnergy0, &b_SliceCaloEnergy0);
+   fChain->SetBranchAddress("SliceCaloEnergy1", &SliceCaloEnergy1, &b_SliceCaloEnergy1);
+   fChain->SetBranchAddress("SliceCaloEnergy2", &SliceCaloEnergy2, &b_SliceCaloEnergy2);
    fChain->SetBranchAddress("gamma_edep", &gamma_edep, &b_gamma_edep);
    fChain->SetBranchAddress("gamma_etot", &gamma_etot, &b_gamma_etot);
    fChain->SetBranchAddress("gamma_dist", &gamma_dist, &b_gamma_dist);
@@ -1068,24 +1469,42 @@ void NeutrinoSelectionFilter::Init(TTree *tree)
    fChain->SetBranchAddress("shr_start_x_v", &shr_start_x_v, &b_shr_start_x_v);
    fChain->SetBranchAddress("shr_start_y_v", &shr_start_y_v, &b_shr_start_y_v);
    fChain->SetBranchAddress("shr_start_z_v", &shr_start_z_v, &b_shr_start_z_v);
+   fChain->SetBranchAddress("shr_start_U_v", &shr_start_U_v, &b_shr_start_U_v);
+   fChain->SetBranchAddress("shr_start_V_v", &shr_start_V_v, &b_shr_start_V_v);
    fChain->SetBranchAddress("shr_dist_v", &shr_dist_v, &b_shr_dist_v);
+   fChain->SetBranchAddress("shr_nclus_v", &shr_nclus_v, &b_shr_nclus_v);
+   fChain->SetBranchAddress("shr_clushitfrac_v", &shr_clushitfrac_v, &b_shr_clushitfrac_v);
    fChain->SetBranchAddress("shr_px_v", &shr_px_v, &b_shr_px_v);
    fChain->SetBranchAddress("shr_py_v", &shr_py_v, &b_shr_py_v);
    fChain->SetBranchAddress("shr_pz_v", &shr_pz_v, &b_shr_pz_v);
+   fChain->SetBranchAddress("shr_openangle_v", &shr_openangle_v, &b_shr_openangle_v);
    fChain->SetBranchAddress("shr_theta_v", &shr_theta_v, &b_shr_theta_v);
    fChain->SetBranchAddress("shr_phi_v", &shr_phi_v, &b_shr_phi_v);
-   fChain->SetBranchAddress("shr_score_v", &shr_score_v, &b_shr_score_v);
-   fChain->SetBranchAddress("n_showers", &n_showers, &b_n_showers);
    fChain->SetBranchAddress("shr_tkfit_nhits_v", &shr_tkfit_nhits_v, &b_shr_tkfit_nhits_v);
    fChain->SetBranchAddress("shr_tkfit_start_x_v", &shr_tkfit_start_x_v, &b_shr_tkfit_start_x_v);
    fChain->SetBranchAddress("shr_tkfit_start_y_v", &shr_tkfit_start_y_v, &b_shr_tkfit_start_y_v);
    fChain->SetBranchAddress("shr_tkfit_start_z_v", &shr_tkfit_start_z_v, &b_shr_tkfit_start_z_v);
+   fChain->SetBranchAddress("shr_tkfit_start_U_v", &shr_tkfit_start_U_v, &b_shr_tkfit_start_U_v);
+   fChain->SetBranchAddress("shr_tkfit_start_V_v", &shr_tkfit_start_V_v, &b_shr_tkfit_start_V_v);
    fChain->SetBranchAddress("shr_tkfit_theta_v", &shr_tkfit_theta_v, &b_shr_tkfit_theta_v);
    fChain->SetBranchAddress("shr_tkfit_phi_v", &shr_tkfit_phi_v, &b_shr_tkfit_phi_v);
-   fChain->SetBranchAddress("shr_tkfit_dedx_y_v", &shr_tkfit_dedx_y_v, &b_shr_tkfit_dedx_y_v);
    fChain->SetBranchAddress("shr_tkfit_dedx_u_v", &shr_tkfit_dedx_u_v, &b_shr_tkfit_dedx_u_v);
    fChain->SetBranchAddress("shr_tkfit_dedx_v_v", &shr_tkfit_dedx_v_v, &b_shr_tkfit_dedx_v_v);
-   fChain->SetBranchAddress("shr_tkfit_dedx_nhits_v", &shr_tkfit_dedx_nhits_v, &b_shr_tkfit_dedx_nhits_v);
+   fChain->SetBranchAddress("shr_tkfit_dedx_y_v", &shr_tkfit_dedx_y_v, &b_shr_tkfit_dedx_y_v);
+   fChain->SetBranchAddress("shr_tkfit_dedx_nhits_u_v", &shr_tkfit_dedx_nhits_u_v, &b_shr_tkfit_dedx_nhits_u_v);
+   fChain->SetBranchAddress("shr_tkfit_dedx_nhits_v_v", &shr_tkfit_dedx_nhits_v_v, &b_shr_tkfit_dedx_nhits_v_v);
+   fChain->SetBranchAddress("shr_tkfit_dedx_nhits_y_v", &shr_tkfit_dedx_nhits_y_v, &b_shr_tkfit_dedx_nhits_y_v);
+   fChain->SetBranchAddress("shr_spacepoint_start_x_v", &shr_spacepoint_start_x_v, &b_shr_spacepoint_start_x_v);
+   fChain->SetBranchAddress("shr_spacepoint_start_y_v", &shr_spacepoint_start_y_v, &b_shr_spacepoint_start_y_v);
+   fChain->SetBranchAddress("shr_spacepoint_start_z_v", &shr_spacepoint_start_z_v, &b_shr_spacepoint_start_z_v);
+   fChain->SetBranchAddress("shr_spacepoint_start_U_v", &shr_spacepoint_start_U_v, &b_shr_spacepoint_start_U_v);
+   fChain->SetBranchAddress("shr_spacepoint_start_V_v", &shr_spacepoint_start_V_v, &b_shr_spacepoint_start_V_v);
+   fChain->SetBranchAddress("shr_hits_start_U_wire_v", &shr_hits_start_U_wire_v, &b_shr_hits_start_U_wire_v);
+   fChain->SetBranchAddress("shr_hits_start_U_x_v", &shr_hits_start_U_x_v, &b_shr_hits_start_U_x_v);
+   fChain->SetBranchAddress("shr_hits_start_V_wire_v", &shr_hits_start_V_wire_v, &b_shr_hits_start_V_wire_v);
+   fChain->SetBranchAddress("shr_hits_start_V_x_v", &shr_hits_start_V_x_v, &b_shr_hits_start_V_x_v);
+   fChain->SetBranchAddress("shr_hits_start_Y_wire_v", &shr_hits_start_Y_wire_v, &b_shr_hits_start_Y_wire_v);
+   fChain->SetBranchAddress("shr_hits_start_Y_x_v", &shr_hits_start_Y_x_v, &b_shr_hits_start_Y_x_v);
    fChain->SetBranchAddress("evnunhits", &evnunhits, &b_evnunhits);
    fChain->SetBranchAddress("evlepnhits", &evlepnhits, &b_evlepnhits);
    fChain->SetBranchAddress("evpronhits", &evpronhits, &b_evpronhits);
@@ -1110,8 +1529,6 @@ void NeutrinoSelectionFilter::Init(TTree *tree)
    fChain->SetBranchAddress("pfneunhits", &pfneunhits, &b_pfneunhits);
    fChain->SetBranchAddress("pfgamnhits", &pfgamnhits, &b_pfgamnhits);
    fChain->SetBranchAddress("pfothnhits", &pfothnhits, &b_pfothnhits);
-   fChain->SetBranchAddress("n_tracks", &n_tracks, &b_n_tracks);
-   fChain->SetBranchAddress("trk_score_v", &trk_score_v, &b_trk_score_v);
    fChain->SetBranchAddress("trk_bragg_p_v", &trk_bragg_p_v, &b_trk_bragg_p_v);
    fChain->SetBranchAddress("trk_bragg_mu_v", &trk_bragg_mu_v, &b_trk_bragg_mu_v);
    fChain->SetBranchAddress("trk_bragg_mip_v", &trk_bragg_mip_v, &b_trk_bragg_mip_v);
@@ -1120,22 +1537,45 @@ void NeutrinoSelectionFilter::Init(TTree *tree)
    fChain->SetBranchAddress("trk_pid_chipi_v", &trk_pid_chipi_v, &b_trk_pid_chipi_v);
    fChain->SetBranchAddress("trk_pid_chika_v", &trk_pid_chika_v, &b_trk_pid_chika_v);
    fChain->SetBranchAddress("trk_pid_chimu_v", &trk_pid_chimu_v, &b_trk_pid_chimu_v);
-   fChain->SetBranchAddress("trk_pfp_id", &trk_pfp_id, &b_trk_pfp_id);
-   fChain->SetBranchAddress("trk_dir_x", &trk_dir_x, &b_trk_dir_x);
-   fChain->SetBranchAddress("trk_dir_y", &trk_dir_y, &b_trk_dir_y);
-   fChain->SetBranchAddress("trk_dir_z", &trk_dir_z, &b_trk_dir_z);
-   fChain->SetBranchAddress("trk_start_x", &trk_start_x, &b_trk_start_x);
-   fChain->SetBranchAddress("trk_start_y", &trk_start_y, &b_trk_start_y);
-   fChain->SetBranchAddress("trk_start_z", &trk_start_z, &b_trk_start_z);
-   fChain->SetBranchAddress("trk_end_x", &trk_end_x, &b_trk_end_x);
-   fChain->SetBranchAddress("trk_end_y", &trk_end_y, &b_trk_end_y);
-   fChain->SetBranchAddress("trk_end_z", &trk_end_z, &b_trk_end_z);
-   fChain->SetBranchAddress("trk_dist_v", &trk_dist_v, &b_trk_dist_v);
+   fChain->SetBranchAddress("trk_bragg_p_u_v", &trk_bragg_p_u_v, &b_trk_bragg_p_u_v);
+   fChain->SetBranchAddress("trk_bragg_mu_u_v", &trk_bragg_mu_u_v, &b_trk_bragg_mu_u_v);
+   fChain->SetBranchAddress("trk_bragg_mip_u_v", &trk_bragg_mip_u_v, &b_trk_bragg_mip_u_v);
+   fChain->SetBranchAddress("trk_pida_u_v", &trk_pida_u_v, &b_trk_pida_u_v);
+   fChain->SetBranchAddress("trk_pid_chipr_u_v", &trk_pid_chipr_u_v, &b_trk_pid_chipr_u_v);
+   fChain->SetBranchAddress("trk_pid_chipi_u_v", &trk_pid_chipi_u_v, &b_trk_pid_chipi_u_v);
+   fChain->SetBranchAddress("trk_pid_chika_u_v", &trk_pid_chika_u_v, &b_trk_pid_chika_u_v);
+   fChain->SetBranchAddress("trk_pid_chimu_u_v", &trk_pid_chimu_u_v, &b_trk_pid_chimu_u_v);
+   fChain->SetBranchAddress("trk_bragg_p_v_v", &trk_bragg_p_v_v, &b_trk_bragg_p_v_v);
+   fChain->SetBranchAddress("trk_bragg_mu_v_v", &trk_bragg_mu_v_v, &b_trk_bragg_mu_v_v);
+   fChain->SetBranchAddress("trk_bragg_mip_v_v", &trk_bragg_mip_v_v, &b_trk_bragg_mip_v_v);
+   fChain->SetBranchAddress("trk_pida_v_v", &trk_pida_v_v, &b_trk_pida_v_v);
+   fChain->SetBranchAddress("trk_pid_chipr_v_v", &trk_pid_chipr_v_v, &b_trk_pid_chipr_v_v);
+   fChain->SetBranchAddress("trk_pid_chipi_v_v", &trk_pid_chipi_v_v, &b_trk_pid_chipi_v_v);
+   fChain->SetBranchAddress("trk_pid_chika_v_v", &trk_pid_chika_v_v, &b_trk_pid_chika_v_v);
+   fChain->SetBranchAddress("trk_pid_chimu_v_v", &trk_pid_chimu_v_v, &b_trk_pid_chimu_v_v);
+   fChain->SetBranchAddress("trk_pfp_id_v", &trk_pfp_id_v, &b_trk_pfp_id_v);
+   fChain->SetBranchAddress("trk_dir_x_v", &trk_dir_x_v, &b_trk_dir_x_v);
+   fChain->SetBranchAddress("trk_dir_y_v", &trk_dir_y_v, &b_trk_dir_y_v);
+   fChain->SetBranchAddress("trk_dir_z_v", &trk_dir_z_v, &b_trk_dir_z_v);
+   fChain->SetBranchAddress("trk_start_x_v", &trk_start_x_v, &b_trk_start_x_v);
+   fChain->SetBranchAddress("trk_start_y_v", &trk_start_y_v, &b_trk_start_y_v);
+   fChain->SetBranchAddress("trk_start_z_v", &trk_start_z_v, &b_trk_start_z_v);
+   fChain->SetBranchAddress("trk_end_x_v", &trk_end_x_v, &b_trk_end_x_v);
+   fChain->SetBranchAddress("trk_end_y_v", &trk_end_y_v, &b_trk_end_y_v);
+   fChain->SetBranchAddress("trk_end_z_v", &trk_end_z_v, &b_trk_end_z_v);
+   fChain->SetBranchAddress("trk_distance_v", &trk_distance_v, &b_trk_distance_v);
    fChain->SetBranchAddress("trk_theta_v", &trk_theta_v, &b_trk_theta_v);
    fChain->SetBranchAddress("trk_phi_v", &trk_phi_v, &b_trk_phi_v);
    fChain->SetBranchAddress("trk_len_v", &trk_len_v, &b_trk_len_v);
-   fChain->SetBranchAddress("trk_energy_proton", &trk_energy_proton, &b_trk_energy_proton);
-   fChain->SetBranchAddress("trk_energy_muon", &trk_energy_muon, &b_trk_energy_muon);
+   fChain->SetBranchAddress("trk_mcs_muon_mom_v", &trk_mcs_muon_mom_v, &b_trk_mcs_muon_mom_v);
+   fChain->SetBranchAddress("trk_energy_proton_v", &trk_energy_proton_v, &b_trk_energy_proton_v);
+   fChain->SetBranchAddress("trk_energy_muon_v", &trk_energy_muon_v, &b_trk_energy_muon_v);
+   fChain->SetBranchAddress("bdt_nuNCpi0", &bdt_nuNCpi0, &b_bdt_nuNCpi0);
+   fChain->SetBranchAddress("bdt_numuCCpi0", &bdt_numuCCpi0, &b_bdt_numuCCpi0);
+   fChain->SetBranchAddress("bdt_numuCC", &bdt_numuCC, &b_bdt_numuCC);
+   fChain->SetBranchAddress("bdt_ext", &bdt_ext, &b_bdt_ext);
+   fChain->SetBranchAddress("bdt_cosmic", &bdt_cosmic, &b_bdt_cosmic);
+   fChain->SetBranchAddress("bdt_global", &bdt_global, &b_bdt_global);
    Notify();
 }
 
@@ -1164,5 +1604,4 @@ Int_t NeutrinoSelectionFilter::Cut(Long64_t entry)
 // returns -1 otherwise.
    return 1;
 }
-
 #endif // #ifdef NeutrinoSelectionFilter_cxx
